@@ -17,7 +17,7 @@ class LoginApp extends StatelessWidget {
     );
   }
 }
-//bfd 
+
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -142,11 +142,54 @@ class HomePage extends StatelessWidget {
               leading: Icon(Icons.menu_book_sharp),
               title: Text('Courses'),
               children: <Widget>[
-                ListTile(
-                  title: Text('Java'),
-                  onTap: () {
-                    //Java course
-                  },
+
+            ExpansionTile(
+            title: Text('Java'),
+      children: <Widget>[
+        ListTile(
+          title: Text('Lessons'),
+          onTap: () {
+            //
+          },
+        ),
+
+
+        ListTile(
+          title: Text('Assignments'),
+          onTap: () {
+            //
+          },
+        ),
+
+        ListTile(
+          title: Text('Quizzes'),
+          onTap: () {
+            //
+          },
+        ),
+
+        ListTile(
+          title: Text('Artcles',),
+          onTap: () {
+            //
+          },
+        ),
+
+        //overflow//
+        // ListTile(
+        //   title: Text('Discussion board',),
+        //   onTap: () {
+        //     //
+        //   },
+        // ),
+
+
+
+      ],
+    ),
+
+
+  },
                 ),
                 ListTile(
                   title: Text('Python'),
