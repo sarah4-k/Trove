@@ -89,7 +89,7 @@ class DiscussionBoardPage extends StatelessWidget {
     );
   }
 }
-/////////////////////////////
+///////////////////////////////
 
 class HomePage extends StatelessWidget {
   void _logout(BuildContext context) {
