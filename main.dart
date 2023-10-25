@@ -143,54 +143,55 @@ class HomePage extends StatelessWidget {
               title: Text('Courses'),
               children: <Widget>[
 
-            ExpansionTile(
-            title: Text('Java'),
-      children: <Widget>[
-        ListTile(
-          title: Text('Lessons'),
-          onTap: () {
-            //
-          },
-        ),
+
+                    ExpansionTile(
+                      title: Text('Java'),
+                      children: <Widget>[
+                        ListTile(
+                          title: Text('Lessons'),
+                          onTap: () {
+                            //
+                          },
+                        ),
 
 
-        ListTile(
-          title: Text('Assignments'),
-          onTap: () {
-            //
-          },
-        ),
+                        ListTile(
+                          title: Text('Assignments'),
+                          onTap: () {
+                            //
+                          },
+                        ),
 
-        ListTile(
-          title: Text('Quizzes'),
-          onTap: () {
-            //
-          },
-        ),
+                        ListTile(
+                          title: Text('Quizzes'),
+                          onTap: () {
+                            //
+                          },
+                        ),
 
-        ListTile(
-          title: Text('Artcles',),
-          onTap: () {
-            //
-          },
-        ),
+                        ListTile(
+                          title: Text('Artcles',),
+                          onTap: () {
+                            //
+                          },
+                        ),
 
-        //overflow//
-        // ListTile(
-        //   title: Text('Discussion board',),
-        //   onTap: () {
-        //     //
-        //   },
-        // ),
-
-
-
-      ],
-    ),
+                        //overflow//
+                        // ListTile(
+                        //   title: Text('Discussion board',),
+                        //   onTap: () {
+                        //     //
+                        //   },
+                        // ),
 
 
-  },
-                ),
+
+                      ],
+                    ),
+
+
+//end
+
                 ListTile(
                   title: Text('Python'),
                   onTap: () {
@@ -205,6 +206,8 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
+
+
             ListTile(
               leading: Icon(Icons.logout),
               title: Text('Log out'),
