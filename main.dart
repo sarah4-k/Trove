@@ -73,6 +73,23 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+///////////////////////////////////////
+class DiscussionBoardPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Discussion Board'),
+      ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Text('Java Discussion Board'),
+        ),
+      ),
+    );
+  }
+}
+/////////////////////////////
 
 class HomePage extends StatelessWidget {
   void _logout(BuildContext context) {
@@ -183,11 +200,25 @@ class HomePage extends StatelessWidget {
                         //     //
                         //   },
                         // ),
+//////////////////////////////////////
+ ListTile(
+                     title: Text('Discussion Board'),
+                     onTap: (){
+                       Navigator.push(
+                         context,
+                         MaterialPageRoute(
+                           builder: (BuildContext context) => DiscussionBoardPage()
+                         ),
+                       );
+                     },
+                   ),
 
 
+                  ],
+                ),
 
-                      ],
-                    ),
+
+           ////////////////         
 
 
 //end
