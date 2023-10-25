@@ -73,7 +73,9 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-///////////////////////////////////////
+//class for the discussion board
+/////////////////////////////////////// 
+
 class DiscussionBoardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -199,8 +201,8 @@ class HomePage extends StatelessWidget {
                         //   onTap: () {
                         //     //
                         //   },
-                        // ),
-//////////////////////////////////////
+                        // ), //there is an overflow because of the size 
+/////////////////////////////////////////////////
  ListTile(
                      title: Text('Discussion Board'),
                      onTap: (){
@@ -218,7 +220,7 @@ class HomePage extends StatelessWidget {
                 ),
 
 
-           ////////////////         
+           /////////////////////////////////////////////////        
 
 
 //end
