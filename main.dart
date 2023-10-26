@@ -114,152 +114,127 @@ class HomePage extends StatelessWidget {
         child: Text('Welcome to Trove! '),
       ),
       drawer: Drawer(
-        child: Column(
-          children: <Widget>[
-            UserAccountsDrawerHeader(
-              accountName: Text('Your Name'),
-              accountEmail: Text('your@email.com'),
-              currentAccountPicture: CircleAvatar(
-                child: FlutterLogo(),
+        child: SingleChildScrollView( // Wrap the Column with SingleChildScrollView
+          child: Column(
+            children: <Widget>[
+              UserAccountsDrawerHeader(
+                accountName: Text('Your Name'),
+                accountEmail: Text('your@email.com'),
+                currentAccountPicture: CircleAvatar(
+                  child: FlutterLogo(),
+                ),
               ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: Text('Home'),
-              onTap: () {
-                // Home menu item tap
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.people),
-              title: Text('About Us'),
-              onTap: () {
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => About_Us(),
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Home'),
+                onTap: () {
+                  // Home menu item tap
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.people),
+                title: Text('About Us'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => About_Us(),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.person),
+                title: Text('Profile Page'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => ProfilePage(),
+                    ),
+                  );
+                },
+              ),
+              ExpansionTile(
+                leading: Icon(Icons.menu_book_sharp),
+                title: Text('Courses'),
+                children: <Widget>[
+                  ExpansionTile(
+                    title: Text('Java'),
+                    children: <Widget>[
+                      ListTile(
+                        title: Text('Lessons'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Assignments'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Quizzes'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Articles'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Discussion Board'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  DiscussionBoardPage(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                );
-              },
-            ),
-
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Profile Page'),
-              onTap: () {
-
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => ProfilePage(),
+                  ListTile(
+                    title: Text('Python'),
+                    onTap: () {
+                      //Python course
+                    },
                   ),
-                );
-              },
-            ),
-            ExpansionTile(
-              leading: Icon(Icons.menu_book_sharp),
-              title: Text('Courses'),
-              children: <Widget>[
-
-
-                    ExpansionTile(
-                      title: Text('Java'),
-                      children: <Widget>[
-                        ListTile(
-                          title: Text('Lessons'),
-                          onTap: () {
-                            //
-                          },
-                        ),
-
-
-                        ListTile(
-                          title: Text('Assignments'),
-                          onTap: () {
-                            //
-                          },
-                        ),
-
-                        ListTile(
-                          title: Text('Quizzes'),
-                          onTap: () {
-                            //
-                          },
-                        ),
-
-                        ListTile(
-                          title: Text('Artcles',),
-                          onTap: () {
-                            //
-                          },
-                        ),
-
-                        //overflow//
-                        // ListTile(
-                        //   title: Text('Discussion board',),
-                        //   onTap: () {
-                        //     //
-                        //   },
-                        // ), //there is an overflow because of the size 
-/////////////////////////////////////////////////
- ListTile(
-                     title: Text('Discussion Board'),
-                     onTap: (){
-                       Navigator.push(
-                         context,
-                         MaterialPageRoute(
-                           builder: (BuildContext context) => DiscussionBoardPage()
-                         ),
-                       );
-                     },
-                   ),
-
-
-                  ],
-                ),
-
-
-           /////////////////////////////////////////////////        
-
-
-//end
-
-                ListTile(
-                  title: Text('Python'),
-                  onTap: () {
-                    //Python course
-                  },
-                ),
-                ListTile(
-                  title: Text('Cyber Security'),
-                  onTap: () {
-                    //Cyber Security course
-                  },
-                ),
-              ],
-            ),
-            ListTile(
-              leading: Icon(Icons.help),
-              title: Text('Support System'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => Support_System(),
+                  ListTile(
+                    title: Text('Cyber Security'),
+                    onTap: () {
+                      //Cyber Security course
+                    },
                   ),
-                );
-              },
-            ),
-
-            ListTile(
-              leading: Icon(Icons.logout),
-              title: Text('Log out'),
-              onTap: () {
-                _logout(context);
-              },
-            ),
-          ],
+                ],
+              ),
+              ListTile(
+                leading: Icon(Icons.help),
+                title: Text('Support System'),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => Support_System(),
+                    ),
+                  );
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('Log out'),
+                onTap: () {
+                  _logout(context);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
