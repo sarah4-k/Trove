@@ -201,47 +201,7 @@ class HomePage extends StatelessWidget {
                     ],
                   ),
 
-                  ExpansionTile(
-                    title: Text('Python'),
-                    children: <Widget>[
-                      ListTile(
-                        title: Text('Lessons'),
-                        onTap: () {
-                          //
-                        },
-                      ),
-                      ListTile(
-                        title: Text('Assignments'),
-                        onTap: () {
-                          //
-                        },
-                      ),
-                      ListTile(
-                        title: Text('Quizzes'),
-                        onTap: () {
-                          //
-                        },
-                      ),
-                      ListTile(
-                        title: Text('Articles'),
-                        onTap: () {
-                          //
-                        },
-                      ),
-                      ListTile(
-                        title: Text('Discussion Board'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  DiscussionBoardPage(),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+
 
                   ExpansionTile(
                     title: Text('Python'),
