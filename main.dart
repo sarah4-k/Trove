@@ -74,7 +74,7 @@ class LoginPage extends StatelessWidget {
   }
 }
 //class for the discussion board
-/////////////////////////////////////// 
+///////////////////////////////////////
 
 class DiscussionBoardPage extends StatelessWidget {
   @override
@@ -200,18 +200,135 @@ class HomePage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  ListTile(
+
+                  ExpansionTile(
                     title: Text('Python'),
-                    onTap: () {
-                      //Python course
-                    },
+                    children: <Widget>[
+                      ListTile(
+                        title: Text('Lessons'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Assignments'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Quizzes'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Articles'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Discussion Board'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  DiscussionBoardPage(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
-                  ListTile(
-                    title: Text('Cyber Security'),
-                    onTap: () {
-                      //Cyber Security course
-                    },
+
+                  ExpansionTile(
+                    title: Text('Python'),
+                    children: <Widget>[
+                      ListTile(
+                        title: Text('Lessons'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Assignments'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Quizzes'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Articles'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Discussion Board'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  DiscussionBoardPage(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
+
+
+                  ExpansionTile(
+                    title: Text('Cyber Securit'),
+                    children: <Widget>[
+                      ListTile(
+                        title: Text('Lessons'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Assignments'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Quizzes'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Articles'),
+                        onTap: () {
+                          //
+                        },
+                      ),
+                      ListTile(
+                        title: Text('Discussion Board'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  DiscussionBoardPage(),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+
+
                 ],
               ),
               ListTile(
@@ -554,5 +671,3 @@ class SignInPage extends StatelessWidget {
     );
   }
 }
-
-
