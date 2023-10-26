@@ -239,7 +239,18 @@ class HomePage extends StatelessWidget {
                 ),
               ],
             ),
-
+            ListTile(
+              leading: Icon(Icons.help),
+              title: Text('Support System'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => Support_System(),
+                  ),
+                );
+              },
+            ),
 
             ListTile(
               leading: Icon(Icons.logout),
@@ -423,6 +434,90 @@ class About_Us extends StatelessWidget {
             Text(
               "Trove@gmail.com",
               style: TextStyle(fontSize: 16.0),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Support_System extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Support System',
+      home: SupportForm(),
+    );
+  }
+}
+
+class SupportForm extends StatefulWidget {
+  @override
+  _SupportFormState createState() => _SupportFormState();
+}
+
+class _SupportFormState extends State<SupportForm> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController problemController = TextEditingController();
+
+  String message = '';
+
+  void handleSubmit() {
+    setState(() {
+      message =
+      'Thank you, ${nameController.text} We will check the problem and contact you via email.';
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        title: Center(child: Text("SUPPORT SYSTEM | TROVE")),
+        backgroundColor: Colors.deepPurple,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(height: 20.0),
+            Text(
+              "Please fill out the form below and we will get back to you as soon as possible.",
+              style: TextStyle(fontSize: 16.0),
+              textAlign: TextAlign.center,
+            ),
+            TextField(
+              controller: nameController,
+              decoration: InputDecoration(hintText: '* Name'),
+            ),
+            TextField(
+              controller: emailController,
+              decoration: InputDecoration(hintText: '* Email'),
+            ),
+            TextField(
+              controller: problemController,
+              decoration: InputDecoration(hintText: '* Problem'),
+              maxLines: 3,
+            ),
+            SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: handleSubmit,
+              icon: Icon(Icons.send),
+              label: Text('Submit'),
+              style: ButtonStyle(
+                  backgroundColor:
+                  MaterialStateProperty.all<Color>(Colors.deepPurple),
+                  minimumSize: MaterialStateProperty.all(Size(350, 40))),
+            ),
+            SizedBox(height: 20),
+            Text(
+              message,
+              style: const TextStyle(fontSize: 16, color: Colors.green),
+              textAlign: TextAlign.center,
             ),
           ],
         ),
