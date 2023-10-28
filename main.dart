@@ -74,7 +74,7 @@ class LoginPage extends StatelessWidget {
   }
 }
 //class for the discussion board
-///////////////////////////////////////
+
 
 class DiscussionBoardPage extends StatelessWidget {
   @override
@@ -91,7 +91,7 @@ class DiscussionBoardPage extends StatelessWidget {
     );
   }
 }
-///////////////////////////////
+
 
 class HomePage extends StatelessWidget {
   void _logout(BuildContext context) {
@@ -109,6 +109,17 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Page'),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(
+                context: context,
+                delegate: CustomSearchDelegate(_handleSearch),
+              );
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Text('Welcome to Trove! '),
@@ -577,6 +588,104 @@ class _SupportFormState extends State<SupportForm> {
     );
   }
 }
+
+class CustomSearchDelegate extends SearchDelegate<String> {
+  final Function(String, BuildContext) onSearch;
+
+  CustomSearchDelegate(this.onSearch);
+
+  @override
+  List<Widget> buildActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+        },
+      ),
+    ];
+  }
+
+  @override
+  Widget buildLeading(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.arrow_back),
+      onPressed: () {
+        close(context, "null");
+      },
+    );
+  }
+
+  @override
+  Widget buildResults(BuildContext context) {
+    if (query.isNotEmpty) {
+      return SearchResultWidget(query: query);
+    } else {
+      return Container();
+    }
+  }
+
+  @override
+  Widget buildSuggestions(BuildContext context) {
+    return Container();
+  }
+}
+
+void _handleSearch(String query, BuildContext context) {
+  String lowercaseQuery = query.toLowerCase();
+
+  if (lowercaseQuery == 'java' ||
+      lowercaseQuery == 'python' ||
+      lowercaseQuery == 'cybersecurity') {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => SearchPage(query: query),
+      ),
+    );
+  } else {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Course not found for: $query'),
+      ),
+    );
+  }
+}
+
+
+
+class SearchResultWidget extends StatelessWidget {
+  final String query;
+
+  SearchResultWidget({required this.query});
+
+  @override
+  Widget build(BuildContext context) {
+    // Replace this with your actual search result rendering logic.
+    return Container(
+      child: Text('Search results for: $query'),
+    );
+  }
+}
+class SearchPage extends StatelessWidget {
+  final String query;
+
+  SearchPage({required this.query});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Search Results'),
+      ),
+      body: Center(
+        child: Text('Search results for: $query'),
+      ),
+    );
+  }
+}
+
+
 
 class SignInPage extends StatelessWidget {
   @override
