@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "799628828573",
+    "project_id": "content-management-syste-fd3bb",
+    "storage_bucket": "content-management-syste-fd3bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799628828573:android:fe92ab21feaca3ccac9974",
+        "android_client_info": {
+          "package_name": "com.mycompany.contentmanagementsystem"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg_oke31rSXWbQm_zjz5nfPM56lRjjo1U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
