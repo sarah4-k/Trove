@@ -135,8 +135,8 @@ class _NavBarPageState extends State<NavBarPage> {
     final tabs = {
       'Homepage': const HomepageWidget(),
       'Courses': const CoursesWidget(),
-      'DiscussionBoard': const DiscussionBoardWidget(),
-      'Profile': const ProfileWidget(),
+      'chat': const ChatWidget(),
+      'Settings': const SettingsWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -176,8 +176,8 @@ class _NavBarPageState extends State<NavBarPage> {
             iconSize: 30.0,
           ),
           GButton(
-            icon: Icons.person_rounded,
-            text: 'Profile',
+            icon: Icons.settings_rounded,
+            text: 'Settings',
             iconSize: 30.0,
           )
         ],

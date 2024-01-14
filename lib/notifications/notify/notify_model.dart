@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'assignmen_python_widget.dart' show AssignmenPythonWidget;
+import 'notify_widget.dart' show NotifyWidget;
 import 'package:flutter/material.dart';
 
-class AssignmenPythonModel extends FlutterFlowModel<AssignmenPythonWidget> {
+class NotifyModel extends FlutterFlowModel<NotifyWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

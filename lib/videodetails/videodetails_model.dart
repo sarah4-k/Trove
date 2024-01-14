@@ -8,19 +8,19 @@ class VideodetailsModel extends FlutterFlowModel<VideodetailsWidget> {
 
   final unfocusNode = FocusNode();
   // Model for videoStat component.
-  late VideoStatModel videoStatModel1;
+  late VideoStatModel videoStatModel;
 
   /// Initialization and disposal methods.
 
   @override
   void initState(BuildContext context) {
-    videoStatModel1 = createModel(context, () => VideoStatModel());
+    videoStatModel = createModel(context, () => VideoStatModel());
   }
 
   @override
   void dispose() {
     unfocusNode.dispose();
-    videoStatModel1.dispose();
+    videoStatModel.dispose();
   }
 
   /// Action blocks are added here.

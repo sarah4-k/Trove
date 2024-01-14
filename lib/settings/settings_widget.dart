@@ -6,25 +6,25 @@ import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'profile_model.dart';
-export 'profile_model.dart';
+import 'settings_model.dart';
+export 'settings_model.dart';
 
-class ProfileWidget extends StatefulWidget {
-  const ProfileWidget({super.key});
+class SettingsWidget extends StatefulWidget {
+  const SettingsWidget({super.key});
 
   @override
-  _ProfileWidgetState createState() => _ProfileWidgetState();
+  _SettingsWidgetState createState() => _SettingsWidgetState();
 }
 
-class _ProfileWidgetState extends State<ProfileWidget> {
-  late ProfileModel _model;
+class _SettingsWidgetState extends State<SettingsWidget> {
+  late SettingsModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => ProfileModel());
+    _model = createModel(context, () => SettingsModel());
   }
 
   @override
@@ -71,7 +71,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             },
           ),
           title: Text(
-            'Profile',
+            'Settings',
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Roboto',
@@ -100,7 +100,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           width: 80.0,
                           height: 80.0,
                           decoration: BoxDecoration(
-                            color: const Color(0x4D9489F5),
+                            color: const Color(0xFF6F61EF),
                             shape: BoxShape.circle,
                             border: Border.all(
                               color: const Color(0xFF6F61EF),
@@ -109,15 +109,8 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                           ),
                           child: Stack(
                             children: [
-                              InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed('Profile');
-                                },
-                                child: Container(
+                              AuthUserStreamWidget(
+                                builder: (context) => Container(
                                   width: MediaQuery.sizeOf(context).width * 1.0,
                                   height:
                                       MediaQuery.sizeOf(context).width * 1.0,
@@ -126,7 +119,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.network(
-                                    'https://picsum.photos/seed/574/600',
+                                    currentUserPhoto,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -143,23 +136,25 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  '[Username]',
-                                  style: FlutterFlowTheme.of(context)
-                                      .headlineSmall
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                        fontSize: 24.0,
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                AuthUserStreamWidget(
+                                  builder: (context) => Text(
+                                    currentUserDisplayName,
+                                    style: FlutterFlowTheme.of(context)
+                                        .headlineSmall
+                                        .override(
+                                          fontFamily: 'Outfit',
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryText,
+                                          fontSize: 24.0,
+                                          fontWeight: FontWeight.w500,
+                                        ),
+                                  ),
                                 ),
                                 Padding(
                                   padding: const EdgeInsetsDirectional.fromSTEB(
                                       0.0, 4.0, 0.0, 0.0),
                                   child: Text(
-                                    '[Email_Address]',
+                                    currentUserEmail,
                                     style: FlutterFlowTheme.of(context)
                                         .bodyMedium
                                         .override(
@@ -180,7 +175,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 15.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 0.0),
                     child: Container(
                       width: double.infinity,
                       height: 50.0,
@@ -331,30 +326,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ),
                     ),
                   ),
-                  Row(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsetsDirectional.fromSTEB(
-                            24.0, 15.0, 0.0, 15.0),
-                        child: Text(
-                          'Account Settings',
-                          style: FlutterFlowTheme.of(context)
-                              .labelMedium
-                              .override(
-                                fontFamily: 'Plus Jakarta Sans',
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryText,
-                                fontSize: 15.0,
-                                fontWeight: FontWeight.normal,
-                              ),
-                        ),
-                      ),
-                    ],
-                  ),
                   Padding(
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 15.0),
+                        const EdgeInsetsDirectional.fromSTEB(20.0, 15.0, 20.0, 15.0),
                     child: Container(
                       width: double.infinity,
                       height: 60.0,
@@ -375,36 +349,63 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  15.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Edit Profile',
-                                style: FlutterFlowTheme.of(context)
-                                    .labelMedium
-                                    .override(
-                                      fontFamily: 'Plus Jakarta Sans',
-                                      color: FlutterFlowTheme.of(context)
-                                          .secondaryText,
-                                      fontSize: 15.0,
-                                      fontWeight: FontWeight.normal,
-                                    ),
-                              ),
-                            ),
-                            const Expanded(
-                              child: Align(
-                                alignment: AlignmentDirectional(0.9, 0.0),
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Color(0xFF57636C),
-                                  size: 18.0,
+                        child: InkWell(
+                          splashColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () async {
+                            context.pushNamed(
+                              'Editprofile',
+                              extra: <String, dynamic>{
+                                kTransitionInfoKey: const TransitionInfo(
+                                  hasTransition: true,
+                                  transitionType:
+                                      PageTransitionType.bottomToTop,
+                                ),
+                              },
+                            );
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    15.0, 0.0, 0.0, 0.0),
+                                child: Text(
+                                  'Edit Profile',
+                                  style: FlutterFlowTheme.of(context)
+                                      .labelMedium
+                                      .override(
+                                        fontFamily: 'Plus Jakarta Sans',
+                                        color: FlutterFlowTheme.of(context)
+                                            .secondaryText,
+                                        fontSize: 15.0,
+                                        fontWeight: FontWeight.normal,
+                                      ),
                                 ),
                               ),
-                            ),
-                          ],
+                              Expanded(
+                                child: Align(
+                                  alignment: const AlignmentDirectional(0.9, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      context.pushNamed('Editprofile');
+                                    },
+                                    child: const Icon(
+                                      Icons.arrow_forward_ios,
+                                      color: Color(0xFF57636C),
+                                      size: 18.0,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -451,13 +452,22 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                     ),
                               ),
                             ),
-                            const Expanded(
+                            Expanded(
                               child: Align(
-                                alignment: AlignmentDirectional(0.9, 0.0),
-                                child: Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Color(0xFF57636C),
-                                  size: 18.0,
+                                alignment: const AlignmentDirectional(0.9, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    context.pushNamed('ForgetPass');
+                                  },
+                                  child: const Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Color(0xFF57636C),
+                                    size: 18.0,
+                                  ),
                                 ),
                               ),
                             ),

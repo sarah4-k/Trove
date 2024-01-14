@@ -85,13 +85,15 @@ class _Stat4WidgetState extends State<Stat4Widget> {
               size: 5.0,
             ),
           ),
-          Text(
-            widget.publshedTimeText!,
-            style: FlutterFlowTheme.of(context).bodyMedium.override(
-                  fontFamily: 'Readex Pro',
-                  color: FlutterFlowTheme.of(context).secondaryText,
-                  fontSize: 12.0,
-                ),
+          Expanded(
+            child: Text(
+              widget.publshedTimeText!,
+              style: FlutterFlowTheme.of(context).bodyMedium.override(
+                    fontFamily: 'Readex Pro',
+                    color: FlutterFlowTheme.of(context).secondaryText,
+                    fontSize: 12.0,
+                  ),
+            ),
           ),
         ],
       ),

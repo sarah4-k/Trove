@@ -97,7 +97,9 @@ class _SearchPageWidgetState extends State<SearchPageWidget>
                   controller: _model.searchTermController,
                   focusNode: _model.searchTermFocusNode,
                   onFieldSubmitted: (_) async {
-                    _model.apiResultb3t = await SearchCall.call();
+                    _model.apiResultb3t = await SearchCall.call(
+                      apiQuery: _model.searchTermController.text,
+                    );
                     if ((_model.apiResultb3t?.succeeded ?? true)) {
                       setState(() {
                         FFAppState().searchresults = SearchCall.video(
@@ -138,11 +140,13 @@ class _SearchPageWidgetState extends State<SearchPageWidget>
                       );
                     }
 
+                    Navigator.pop(context);
+
                     setState(() {});
                   },
                   obscureText: false,
                   decoration: InputDecoration(
-                    labelText: 'Search for course..',
+                    labelText: 'Search for video..',
                     labelStyle:
                         FlutterFlowTheme.of(context).labelMedium.override(
                               fontFamily: 'Readex Pro',
@@ -293,7 +297,9 @@ class _SearchPageWidgetState extends State<SearchPageWidget>
                                       ),
                                       onPressed: () async {
                                         _model.apiResulteuv =
-                                            await SearchCall.call();
+                                            await SearchCall.call(
+                                          apiQuery: termItem,
+                                        );
                                         if ((_model.apiResulteuv?.succeeded ??
                                             true)) {
                                           setState(() {

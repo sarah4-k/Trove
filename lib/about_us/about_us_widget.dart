@@ -51,7 +51,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: const Color(0xFF140139),
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
@@ -66,7 +66,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.pushNamed('Homepage');
             },
           ),
           title: Text(
@@ -82,50 +82,47 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
           centerTitle: true,
           elevation: 5.0,
         ),
-        body: SafeArea(
-          top: true,
-          child: Container(
-            width: double.infinity,
-            height: double.infinity,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: Image.asset(
-                  'assets/images/purple.png',
-                ).image,
-              ),
-              shape: BoxShape.rectangle,
+        body: Container(
+          width: double.infinity,
+          height: double.infinity,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: Image.asset(
+                'assets/images/purple.png',
+              ).image,
             ),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(8.0),
-                    child: Image.asset(
-                      'assets/images/Trove2.png',
-                      width: double.infinity,
-                      height: 300.0,
-                      fit: BoxFit.cover,
-                    ),
+            shape: BoxShape.rectangle,
+          ),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8.0),
+                  child: Image.asset(
+                    'assets/images/Trove2.png',
+                    width: double.infinity,
+                    height: 300.0,
+                    fit: BoxFit.cover,
                   ),
-                  Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(44.0, 10.0, 44.0, 0.0),
-                    child: Text(
-                      'Trove is an educational application that provides courses, containing recorded lectures, articles, and short tests in the computer science field. you can view them anytime, anywhere.',
-                      textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).titleSmall.override(
-                            fontFamily: 'Readex Pro',
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.w500,
-                            lineHeight: 2.0,
-                          ),
-                    ),
+                ),
+                Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(44.0, 10.0, 44.0, 0.0),
+                  child: Text(
+                    'Trove is an educational application that provides courses, containing recorded lectures, articles, and short tests in the computer science field. you can view them anytime, anywhere.',
+                    textAlign: TextAlign.center,
+                    style: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w500,
+                          lineHeight: 2.0,
+                        ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),

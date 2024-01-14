@@ -108,7 +108,7 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                     size: 30.0,
                   ),
                   onPressed: () async {
-                    context.pop();
+                    context.safePop();
                   },
                 ),
                 title: Text(
@@ -154,28 +154,28 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                               color: FlutterFlowTheme.of(context).alternate,
                               width: 2.0,
                             ),
-                            borderRadius: BorderRadius.circular(0.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                           focusedBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).primary,
                               width: 2.0,
                             ),
-                            borderRadius: BorderRadius.circular(0.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                           errorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).error,
                               width: 2.0,
                             ),
-                            borderRadius: BorderRadius.circular(0.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                           focusedErrorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                               color: FlutterFlowTheme.of(context).error,
                               width: 2.0,
                             ),
-                            borderRadius: BorderRadius.circular(0.0),
+                            borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium,

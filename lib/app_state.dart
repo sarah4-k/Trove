@@ -68,7 +68,7 @@ class FFAppState extends ChangeNotifier {
     _searchresults.insert(index, value);
   }
 
-  String _initialSearch = 'Java programing language';
+  String _initialSearch = 'java progrming language';
   String get initialSearch => _initialSearch;
   set initialSearch(String value) {
     _initialSearch = value;
@@ -104,7 +104,7 @@ class FFAppState extends ChangeNotifier {
     _SearchRefinements.insert(index, value);
   }
 
-  String _PintialSearch = 'python';
+  String _PintialSearch = 'python programming';
   String get PintialSearch => _PintialSearch;
   set PintialSearch(String value) {
     _PintialSearch = value;

@@ -12,7 +12,12 @@ import 'lessons_cyber_security_model.dart';
 export 'lessons_cyber_security_model.dart';
 
 class LessonsCyberSecurityWidget extends StatefulWidget {
-  const LessonsCyberSecurityWidget({super.key});
+  const LessonsCyberSecurityWidget({
+    super.key,
+    this.video,
+  });
+
+  final List<dynamic>? video;
 
   @override
   _LessonsCyberSecurityWidgetState createState() =>
@@ -98,7 +103,7 @@ class _LessonsCyberSecurityWidgetState
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed('CyberSecurity');
+              context.safePop();
             },
           ),
           title: Text(
@@ -121,8 +126,16 @@ class _LessonsCyberSecurityWidgetState
                 color: FlutterFlowTheme.of(context).primaryText,
                 size: 24.0,
               ),
-              onPressed: () {
-                print('IconButton pressed ...');
+              onPressed: () async {
+                context.pushNamed(
+                  'searchPage',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.bottomToTop,
+                    ),
+                  },
+                );
               },
             ),
           ],
@@ -136,49 +149,86 @@ class _LessonsCyberSecurityWidgetState
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Builder(
                     builder: (context) {
                       final refinments =
                           FFAppState().SearchRefinements.toList();
-                      return Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children:
-                            List.generate(refinments.length, (refinmentsIndex) {
-                          final refinmentsItem = refinments[refinmentsIndex];
-                          return Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 10.0, 0.0),
-                            child: Container(
-                              width: 100.0,
-                              height: 40.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context)
-                                    .primaryBackground,
-                                borderRadius: BorderRadius.circular(25.0),
-                              ),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Text(
-                                      refinmentsItem.toString(),
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Readex Pro',
-                                            fontSize: 12.0,
-                                          ),
-                                    ),
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: List.generate(refinments.length,
+                              (refinmentsIndex) {
+                            final refinmentsItem = refinments[refinmentsIndex];
+                            return Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 10.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  _model.apiResultn6f = await SearchCall.call(
+                                    apiQuery: refinmentsItem.toString(),
+                                  );
+                                  if ((_model.apiResultn6f?.succeeded ??
+                                      true)) {
+                                    setState(() {
+                                      FFAppState().searchresults =
+                                          SearchCall.video(
+                                        (_model.apiResultn6f?.jsonBody ?? ''),
+                                      )!
+                                              .toList()
+                                              .cast<dynamic>();
+                                    });
+                                    setState(() {
+                                      FFAppState().SearchRefinements =
+                                          getJsonField(
+                                        (_model.apiResultn6f?.jsonBody ?? ''),
+                                        r'''$.refinements''',
+                                        true,
+                                      )!
+                                              .toList()
+                                              .cast<dynamic>();
+                                    });
+                                  }
+
+                                  setState(() {});
+                                },
+                                child: Container(
+                                  width: 100.0,
+                                  height: 40.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    borderRadius: BorderRadius.circular(25.0),
                                   ),
-                                ],
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          refinmentsItem.toString(),
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 12.0,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                          );
-                        }),
+                            );
+                          }),
+                        ),
                       );
                     },
                   ),
@@ -203,171 +253,185 @@ class _LessonsCyberSecurityWidgetState
                             return Padding(
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   0.0, 0.0, 0.0, 15.0),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Stack(
-                                    alignment: const AlignmentDirectional(0.9, 0.85),
-                                    children: [
-                                      InkWell(
-                                        splashColor: Colors.transparent,
-                                        focusColor: Colors.transparent,
-                                        hoverColor: Colors.transparent,
-                                        highlightColor: Colors.transparent,
-                                        onTap: () async {
-                                          context.pushNamed(
-                                            'videodetails',
-                                            queryParameters: {
-                                              'video': serializeParam(
-                                                videoItem,
-                                                ParamType.JSON,
-                                              ),
-                                            }.withoutNulls,
-                                            extra: <String, dynamic>{
-                                              kTransitionInfoKey:
-                                                  const TransitionInfo(
-                                                hasTransition: true,
-                                                transitionType:
-                                                    PageTransitionType
-                                                        .rightToLeft,
-                                                duration:
-                                                    Duration(milliseconds: 200),
-                                              ),
-                                            },
-                                          );
-                                        },
-                                        child: ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(15.0),
-                                          child: Image.network(
-                                            getJsonField(
-                                              videoItem,
-                                              r'''$.thumbnails[0].url''',
-                                            ).toString(),
-                                            width: double.infinity,
-                                            height: 200.0,
-                                            fit: BoxFit.cover,
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        width: 70.0,
-                                        height: 30.0,
-                                        decoration: BoxDecoration(
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryBackground,
-                                          borderRadius:
-                                              BorderRadius.circular(15.0),
-                                        ),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                valueOrDefault<String>(
-                                                  functions.newCustomFunction(
-                                                      getJsonField(
-                                                    videoItem,
-                                                    r'''$.lengthSeconds''',
-                                                  )),
-                                                  '0',
-                                                ),
-                                                textAlign: TextAlign.center,
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 20.0, 0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.max,
+                              child: SingleChildScrollView(
+                                primary: false,
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Stack(
+                                      alignment:
+                                          const AlignmentDirectional(0.9, 0.85),
                                       children: [
-                                        Padding(
-                                          padding:
-                                              const EdgeInsetsDirectional.fromSTEB(
-                                                  0.0, 0.0, 10.0, 0.0),
-                                          child: Container(
-                                            width: 50.0,
-                                            height: 50.0,
-                                            clipBehavior: Clip.antiAlias,
-                                            decoration: const BoxDecoration(
-                                              shape: BoxShape.circle,
-                                            ),
+                                        InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed(
+                                              'videodetails',
+                                              queryParameters: {
+                                                'video': serializeParam(
+                                                  videoItem,
+                                                  ParamType.JSON,
+                                                ),
+                                              }.withoutNulls,
+                                              extra: <String, dynamic>{
+                                                kTransitionInfoKey:
+                                                    const TransitionInfo(
+                                                  hasTransition: true,
+                                                  transitionType:
+                                                      PageTransitionType
+                                                          .rightToLeft,
+                                                  duration: Duration(
+                                                      milliseconds: 200),
+                                                ),
+                                              },
+                                            );
+                                          },
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
                                             child: Image.network(
                                               getJsonField(
                                                 videoItem,
-                                                r'''$.author.avatar[0].url''',
+                                                r'''$.thumbnails[0].url''',
                                               ).toString(),
+                                              width: double.infinity,
+                                              height: 200.0,
                                               fit: BoxFit.cover,
                                             ),
                                           ),
                                         ),
-                                        Expanded(
-                                          child: Column(
+                                        Container(
+                                          width: 70.0,
+                                          height: 30.0,
+                                          decoration: BoxDecoration(
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryBackground,
+                                            borderRadius:
+                                                BorderRadius.circular(15.0),
+                                          ),
+                                          child: Row(
                                             mainAxisSize: MainAxisSize.max,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
                                             children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: [
-                                                  Expanded(
-                                                    child: Text(
-                                                      getJsonField(
-                                                        videoItem,
-                                                        r'''$.title''',
-                                                      ).toString(),
-                                                      maxLines: 1,
-                                                      style:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodyMedium
-                                                              .override(
-                                                                fontFamily:
-                                                                    'Readex Pro',
-                                                                color: FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .secondaryText,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w600,
-                                                              ),
-                                                    ),
+                                              Expanded(
+                                                child: Text(
+                                                  valueOrDefault<String>(
+                                                    functions.newCustomFunction(
+                                                        getJsonField(
+                                                      videoItem,
+                                                      r'''$.lengthSeconds''',
+                                                    )),
+                                                    '0',
                                                   ),
-                                                ],
-                                              ),
-                                              Stat4Widget(
-                                                key: Key(
-                                                    'Keylnz_${videoIndex}_of_${video.length}'),
-                                                author: getJsonField(
-                                                  videoItem,
-                                                  r'''$.author.title''',
-                                                ).toString(),
-                                                views: getJsonField(
-                                                  videoItem,
-                                                  r'''$.stats.views''',
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodyMedium,
                                                 ),
-                                                publshedTimeText: getJsonField(
-                                                  videoItem,
-                                                  r'''$.publishedTimeText''',
-                                                ).toString(),
                                               ),
                                             ],
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ],
+                                    Padding(
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          0.0, 20.0, 0.0, 0.0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                const EdgeInsetsDirectional.fromSTEB(
+                                                    0.0, 0.0, 10.0, 0.0),
+                                            child: Container(
+                                              width: 50.0,
+                                              height: 50.0,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: const BoxDecoration(
+                                                shape: BoxShape.circle,
+                                              ),
+                                              child: Image.network(
+                                                getJsonField(
+                                                  videoItem,
+                                                  r'''$.author.avatar[0].url''',
+                                                ).toString(),
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.max,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Expanded(
+                                                      child: Text(
+                                                        getJsonField(
+                                                          videoItem,
+                                                          r'''$.title''',
+                                                        ).toString(),
+                                                        maxLines: 1,
+                                                        style:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Readex Pro',
+                                                                  color: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .secondaryText,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w600,
+                                                                ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                Align(
+                                                  alignment:
+                                                      const AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Stat4Widget(
+                                                    key: Key(
+                                                        'Keylnz_${videoIndex}_of_${video.length}'),
+                                                    author: getJsonField(
+                                                      videoItem,
+                                                      r'''$.author.title''',
+                                                    ).toString(),
+                                                    views: getJsonField(
+                                                      videoItem,
+                                                      r'''$.stats.views''',
+                                                    ),
+                                                    publshedTimeText:
+                                                        getJsonField(
+                                                      videoItem,
+                                                      r'''$.publishedTimeText''',
+                                                    ).toString(),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             );
                           },

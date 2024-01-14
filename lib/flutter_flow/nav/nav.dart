@@ -111,11 +111,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           ),
         ),
         FFRoute(
-          name: 'AssignmentJava',
-          path: '/assignmentJava',
-          builder: (context, params) => const AssignmentJavaWidget(),
-        ),
-        FFRoute(
           name: 'QuizzsJava',
           path: '/quizzsJava',
           builder: (context, params) => QuizzsJavaWidget(
@@ -132,12 +127,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'LessonsCyberSecurity',
           path: '/lessonsCyberSecurity',
-          builder: (context, params) => const LessonsCyberSecurityWidget(),
-        ),
-        FFRoute(
-          name: 'AssignmentCyberSecurity',
-          path: '/assignmentCyberSecurity',
-          builder: (context, params) => const AssignmentCyberSecurityWidget(),
+          builder: (context, params) => LessonsCyberSecurityWidget(
+            video: params.getParam<dynamic>('video', ParamType.JSON, true),
+          ),
         ),
         FFRoute(
           name: 'QuizzesCyberSecurity',
@@ -173,11 +165,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const LessonsPythonWidget(),
         ),
         FFRoute(
-          name: 'AssignmenPython',
-          path: '/assignmenPython',
-          builder: (context, params) => const AssignmenPythonWidget(),
-        ),
-        FFRoute(
           name: 'QuizzesPython',
           path: '/quizzesPython',
           builder: (context, params) => const QuizzesPythonWidget(),
@@ -190,9 +177,13 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'DiscussionBoard',
           path: '/discussionBoard',
-          builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'DiscussionBoard')
-              : const DiscussionBoardWidget(),
+          asyncParams: {
+            'notifications': getDoc(
+                ['users', 'Notifications2'], Notifications2Record.fromSnapshot),
+          },
+          builder: (context, params) => DiscussionBoardWidget(
+            notifications: params.getParam('notifications', ParamType.Document),
+          ),
         ),
         FFRoute(
           name: 'AboutUs',
@@ -210,11 +201,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                 ),
         ),
         FFRoute(
-          name: 'Profile',
-          path: '/profile',
+          name: 'Settings',
+          path: '/settings',
           builder: (context, params) => params.isEmpty
-              ? const NavBarPage(initialPage: 'Profile')
-              : const ProfileWidget(),
+              ? const NavBarPage(initialPage: 'Settings')
+              : const SettingsWidget(),
         ),
         FFRoute(
           name: 'searchPage',
@@ -403,6 +394,35 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'QuizzesPageWrite',
           path: '/quizzesPageWrite',
           builder: (context, params) => const QuizzesPageWriteWidget(),
+        ),
+        FFRoute(
+          name: 'supportpage2',
+          path: '/supportpage2',
+          builder: (context, params) => const Supportpage2Widget(),
+        ),
+        FFRoute(
+          name: 'ForgetPass',
+          path: '/forgetPass',
+          builder: (context, params) => const ForgetPassWidget(),
+        ),
+        FFRoute(
+          name: 'chat',
+          path: '/chat',
+          builder: (context, params) =>
+              params.isEmpty ? const NavBarPage(initialPage: 'chat') : const ChatWidget(),
+        ),
+        FFRoute(
+          name: 'Notify',
+          path: '/notify',
+          builder: (context, params) => const NotifyWidget(),
+        ),
+        FFRoute(
+          name: 'ChatNotifications',
+          path: '/chatNotifications',
+          builder: (context, params) => ChatNotificationsWidget(
+            topicid: params.getParam(
+                'topicid', ParamType.DocumentReference, false, ['topics']),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

@@ -103,19 +103,7 @@ class _LessonsJavaWidgetState extends State<LessonsJavaWidget> {
                 size: 30.0,
               ),
               onPressed: () async {
-                context.pushNamed(
-                  'java',
-                  queryParameters: {
-                    'duration': serializeParam(
-                      0,
-                      ParamType.int,
-                    ),
-                    'quizRef': serializeParam(
-                      widget.quizReff,
-                      ParamType.DocumentReference,
-                    ),
-                  }.withoutNulls,
-                );
+                context.safePop();
               },
             ),
             title: ClipRRect(
@@ -182,6 +170,7 @@ class _LessonsJavaWidgetState extends State<LessonsJavaWidget> {
                               scrollDirection: Axis.horizontal,
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: List.generate(refinment.length,
                                     (refinmentIndex) {
                                   final refinmentItem =
@@ -196,7 +185,9 @@ class _LessonsJavaWidgetState extends State<LessonsJavaWidget> {
                                       highlightColor: Colors.transparent,
                                       onTap: () async {
                                         _model.apiResult8j1 =
-                                            await SearchCall.call();
+                                            await SearchCall.call(
+                                          apiQuery: refinmentItem.toString(),
+                                        );
                                         if ((_model.apiResult8j1?.succeeded ??
                                             true)) {
                                           setState(() {

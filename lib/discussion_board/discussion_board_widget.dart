@@ -1,3 +1,4 @@
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -8,7 +9,12 @@ import 'discussion_board_model.dart';
 export 'discussion_board_model.dart';
 
 class DiscussionBoardWidget extends StatefulWidget {
-  const DiscussionBoardWidget({super.key});
+  const DiscussionBoardWidget({
+    super.key,
+    this.notifications,
+  });
+
+  final Notifications2Record? notifications;
 
   @override
   _DiscussionBoardWidgetState createState() => _DiscussionBoardWidgetState();
@@ -66,7 +72,7 @@ class _DiscussionBoardWidgetState extends State<DiscussionBoardWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.pushNamed('Homepage');
             },
           ),
           title: Text(
@@ -129,15 +135,24 @@ class _DiscussionBoardWidgetState extends State<DiscussionBoardWidget> {
                                       Padding(
                                         padding: const EdgeInsetsDirectional.fromSTEB(
                                             10.0, 0.0, 0.0, 0.0),
-                                        child: Text(
-                                          'Type a message',
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 15.0,
-                                                fontWeight: FontWeight.w600,
-                                              ),
+                                        child: InkWell(
+                                          splashColor: Colors.transparent,
+                                          focusColor: Colors.transparent,
+                                          hoverColor: Colors.transparent,
+                                          highlightColor: Colors.transparent,
+                                          onTap: () async {
+                                            context.pushNamed('chat');
+                                          },
+                                          child: Text(
+                                            'Type a message',
+                                            style: FlutterFlowTheme.of(context)
+                                                .labelMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 15.0,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                          ),
                                         ),
                                       ),
                                       Padding(

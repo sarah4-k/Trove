@@ -65,7 +65,7 @@ class _CyberSecurityWidgetState extends State<CyberSecurityWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed('Homepage');
+              context.safePop();
             },
           ),
           title: Text(
@@ -155,59 +155,6 @@ class _CyberSecurityWidgetState extends State<CyberSecurityWidget> {
                             ),
                           ],
                         ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 0.0,
-                        color: Color(0xFFE0E3E7),
-                        offset: Offset(0.0, 1.0),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(0.0),
-                    shape: BoxShape.rectangle,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onDoubleTap: () async {
-                        context.pushNamed('AssignmentCyberSecurity');
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            width: 4.0,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.circular(2.0),
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
-                              child: Text(
-                                'Assignment',
-                                style: FlutterFlowTheme.of(context).bodyLarge,
-                              ),
-                            ),
-                          ),
-                        ],
                       ),
                     ),
                   ),
@@ -325,74 +272,6 @@ class _CyberSecurityWidgetState extends State<CyberSecurityWidget> {
                                       color: FlutterFlowTheme.of(context)
                                           .primaryText,
                                     ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
-                child: Container(
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                    boxShadow: const [
-                      BoxShadow(
-                        blurRadius: 0.0,
-                        color: Color(0xFFE0E3E7),
-                        offset: Offset(0.0, 1.0),
-                      )
-                    ],
-                    borderRadius: BorderRadius.circular(0.0),
-                    shape: BoxShape.rectangle,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: InkWell(
-                      splashColor: Colors.transparent,
-                      focusColor: Colors.transparent,
-                      hoverColor: Colors.transparent,
-                      highlightColor: Colors.transparent,
-                      onDoubleTap: () async {
-                        context.pushNamed('DiscussionBoard');
-                      },
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Container(
-                            width: 4.0,
-                            height: 50.0,
-                            decoration: BoxDecoration(
-                              color: FlutterFlowTheme.of(context).primary,
-                              borderRadius: BorderRadius.circular(2.0),
-                            ),
-                          ),
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  12.0, 0.0, 0.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  context.pushNamed('DiscussionBoard');
-                                },
-                                child: Text(
-                                  'Discussion Board',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelLarge
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                ),
                               ),
                             ),
                           ),

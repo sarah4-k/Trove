@@ -75,7 +75,7 @@ class _JavaWidgetState extends State<JavaWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pop();
+              context.safePop();
             },
           ),
           title: Text(
@@ -183,7 +183,7 @@ class _JavaWidgetState extends State<JavaWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onDoubleTap: () async {
-                        context.pushNamed('AssignmentJava');
+                        context.pushNamed('QuizzesPage');
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -206,10 +206,10 @@ class _JavaWidgetState extends State<JavaWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  context.pushNamed('JavaArticles');
+                                  context.pushNamed('QuizzesPage');
                                 },
                                 child: Text(
-                                  'Assignment',
+                                  'Quizzes',
                                   style: FlutterFlowTheme.of(context).bodyLarge,
                                 ),
                               ),
@@ -245,7 +245,7 @@ class _JavaWidgetState extends State<JavaWidget> {
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
                       onTap: () async {
-                        context.pushNamed('QuizzesPage');
+                        context.pushNamed('JavaArticles');
                       },
                       child: Row(
                         mainAxisSize: MainAxisSize.max,
@@ -263,80 +263,12 @@ class _JavaWidgetState extends State<JavaWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   12.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                'Quizzes',
+                                'Articles',
                                 style: FlutterFlowTheme.of(context).bodyLarge,
                               ),
                             ),
                           ),
                         ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 1.0),
-                child: InkWell(
-                  splashColor: Colors.transparent,
-                  focusColor: Colors.transparent,
-                  hoverColor: Colors.transparent,
-                  highlightColor: Colors.transparent,
-                  onTap: () async {
-                    context.pushNamed('JavaArticles');
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: FlutterFlowTheme.of(context).secondaryBackground,
-                      boxShadow: const [
-                        BoxShadow(
-                          blurRadius: 0.0,
-                          color: Color(0xFFE0E3E7),
-                          offset: Offset(0.0, 1.0),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(0.0),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () async {
-                          context.pushNamed('JavaArticles');
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: 4.0,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: BorderRadius.circular(2.0),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Articles',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelLarge
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
                       ),
                     ),
                   ),
@@ -366,47 +298,6 @@ class _JavaWidgetState extends State<JavaWidget> {
                       ],
                       borderRadius: BorderRadius.circular(0.0),
                       shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: InkWell(
-                        splashColor: Colors.transparent,
-                        focusColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onDoubleTap: () async {
-                          context.pushNamed('DiscussionBoard');
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: 4.0,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                color: FlutterFlowTheme.of(context).primary,
-                                borderRadius: BorderRadius.circular(2.0),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsetsDirectional.fromSTEB(
-                                    12.0, 0.0, 0.0, 0.0),
-                                child: Text(
-                                  'Discussion Board  ',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelLarge
-                                      .override(
-                                        fontFamily: 'Readex Pro',
-                                        color: FlutterFlowTheme.of(context)
-                                            .primaryText,
-                                      ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                     ),
                   ),
                 ),

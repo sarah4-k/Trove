@@ -96,7 +96,7 @@ class _LessonsPythonWidgetState extends State<LessonsPythonWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.pushNamed('Python');
+              context.safePop();
             },
           ),
           title: ClipRRect(
@@ -118,8 +118,16 @@ class _LessonsPythonWidgetState extends State<LessonsPythonWidget> {
                 color: FlutterFlowTheme.of(context).primaryText,
                 size: 20.0,
               ),
-              onPressed: () {
-                print('IconButton pressed ...');
+              onPressed: () async {
+                context.pushNamed(
+                  'searchPage',
+                  extra: <String, dynamic>{
+                    kTransitionInfoKey: const TransitionInfo(
+                      hasTransition: true,
+                      transitionType: PageTransitionType.bottomToTop,
+                    ),
+                  },
+                );
               },
             ),
           ],
@@ -138,74 +146,80 @@ class _LessonsPythonWidgetState extends State<LessonsPythonWidget> {
                     builder: (context) {
                       final refinments =
                           FFAppState().SearchRefinements.toList();
-                      return Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children:
-                            List.generate(refinments.length, (refinmentsIndex) {
-                          final refinmentsItem = refinments[refinmentsIndex];
-                          return Padding(
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 10.0, 0.0),
-                            child: InkWell(
-                              splashColor: Colors.transparent,
-                              focusColor: Colors.transparent,
-                              hoverColor: Colors.transparent,
-                              highlightColor: Colors.transparent,
-                              onTap: () async {
-                                _model.apiResultcbx = await SearchCall.call();
-                                if ((_model.apiResultcbx?.succeeded ?? true)) {
-                                  setState(() {
-                                    FFAppState().searchresults =
-                                        SearchCall.video(
-                                      (_model.apiResultcbx?.jsonBody ?? ''),
-                                    )!
-                                            .toList()
-                                            .cast<dynamic>();
-                                  });
-                                  setState(() {
-                                    FFAppState().SearchRefinements =
-                                        getJsonField(
-                                      (_model.apiResultcbx?.jsonBody ?? ''),
-                                      r'''$.refinements''',
-                                      true,
-                                    )!
-                                            .toList()
-                                            .cast<dynamic>();
-                                  });
-                                }
+                      return SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          children: List.generate(refinments.length,
+                              (refinmentsIndex) {
+                            final refinmentsItem = refinments[refinmentsIndex];
+                            return Padding(
+                              padding: const EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 10.0, 0.0),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  _model.apiResultcbx = await SearchCall.call(
+                                    apiQuery: refinmentsItem.toString(),
+                                  );
+                                  if ((_model.apiResultcbx?.succeeded ??
+                                      true)) {
+                                    setState(() {
+                                      FFAppState().searchresults =
+                                          SearchCall.video(
+                                        (_model.apiResultcbx?.jsonBody ?? ''),
+                                      )!
+                                              .toList()
+                                              .cast<dynamic>();
+                                    });
+                                    setState(() {
+                                      FFAppState().SearchRefinements =
+                                          getJsonField(
+                                        (_model.apiResultcbx?.jsonBody ?? ''),
+                                        r'''$.refinements''',
+                                        true,
+                                      )!
+                                              .toList()
+                                              .cast<dynamic>();
+                                    });
+                                  }
 
-                                setState(() {});
-                              },
-                              child: Container(
-                                width: 100.0,
-                                height: 40.0,
-                                decoration: BoxDecoration(
-                                  color: FlutterFlowTheme.of(context)
-                                      .primaryBackground,
-                                  borderRadius: BorderRadius.circular(25.0),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Expanded(
-                                      child: Text(
-                                        refinmentsItem.toString(),
-                                        textAlign: TextAlign.center,
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              fontFamily: 'Readex Pro',
-                                              fontSize: 12.0,
-                                            ),
+                                  setState(() {});
+                                },
+                                child: Container(
+                                  width: 100.0,
+                                  height: 40.0,
+                                  decoration: BoxDecoration(
+                                    color: FlutterFlowTheme.of(context)
+                                        .primaryBackground,
+                                    borderRadius: BorderRadius.circular(25.0),
+                                  ),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          refinmentsItem.toString(),
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Readex Pro',
+                                                fontSize: 12.0,
+                                              ),
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               ),
-                            ),
-                          );
-                        }),
+                            );
+                          }),
+                        ),
                       );
                     },
                   ),

@@ -10,6 +10,8 @@ class LessonsCyberSecurityModel
   final unfocusNode = FocusNode();
   // Stores action output result for [Backend Call - API (search)] action in LessonsCyberSecurity widget.
   ApiCallResponse? apiResultpf2;
+  // Stores action output result for [Backend Call - API (search)] action in Container widget.
+  ApiCallResponse? apiResultn6f;
 
   /// Initialization and disposal methods.
 

@@ -50,6 +50,21 @@ class UsersRecord extends FirestoreRecord {
   List<DocumentReference> get seenFlashcards => _seenFlashcards ?? const [];
   bool hasSeenFlashcards() => _seenFlashcards != null;
 
+  // "photo" field.
+  List<String>? _photo;
+  List<String> get photo => _photo ?? const [];
+  bool hasPhoto() => _photo != null;
+
+  // "last_usre_read_time" field.
+  DateTime? _lastUsreReadTime;
+  DateTime? get lastUsreReadTime => _lastUsreReadTime;
+  bool hasLastUsreReadTime() => _lastUsreReadTime != null;
+
+  // "last_user_tt" field.
+  String? _lastUserTt;
+  String get lastUserTt => _lastUserTt ?? '';
+  bool hasLastUserTt() => _lastUserTt != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -58,6 +73,9 @@ class UsersRecord extends FirestoreRecord {
     _createdTime = snapshotData['created_time'] as DateTime?;
     _phoneNumber = snapshotData['phone_number'] as String?;
     _seenFlashcards = getDataList(snapshotData['seenFlashcards']);
+    _photo = getDataList(snapshotData['photo']);
+    _lastUsreReadTime = snapshotData['last_usre_read_time'] as DateTime?;
+    _lastUserTt = snapshotData['last_user_tt'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -100,6 +118,8 @@ Map<String, dynamic> createUsersRecordData({
   String? uid,
   DateTime? createdTime,
   String? phoneNumber,
+  DateTime? lastUsreReadTime,
+  String? lastUserTt,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -109,6 +129,8 @@ Map<String, dynamic> createUsersRecordData({
       'uid': uid,
       'created_time': createdTime,
       'phone_number': phoneNumber,
+      'last_usre_read_time': lastUsreReadTime,
+      'last_user_tt': lastUserTt,
     }.withoutNulls,
   );
 
@@ -127,7 +149,10 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.uid == e2?.uid &&
         e1?.createdTime == e2?.createdTime &&
         e1?.phoneNumber == e2?.phoneNumber &&
-        listEquality.equals(e1?.seenFlashcards, e2?.seenFlashcards);
+        listEquality.equals(e1?.seenFlashcards, e2?.seenFlashcards) &&
+        listEquality.equals(e1?.photo, e2?.photo) &&
+        e1?.lastUsreReadTime == e2?.lastUsreReadTime &&
+        e1?.lastUserTt == e2?.lastUserTt;
   }
 
   @override
@@ -138,7 +163,10 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.uid,
         e?.createdTime,
         e?.phoneNumber,
-        e?.seenFlashcards
+        e?.seenFlashcards,
+        e?.photo,
+        e?.lastUsreReadTime,
+        e?.lastUserTt
       ]);
 
   @override
