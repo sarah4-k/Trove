@@ -191,6 +191,7 @@ class _SecondPageQuizJavaWidgetState extends State<SecondPageQuizJavaWidget>
                     ],
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
+                          color: const Color(0xFF1B175E),
                           fontSize: 15.0,
                         ),
                   ),
@@ -218,7 +219,7 @@ class _SecondPageQuizJavaWidgetState extends State<SecondPageQuizJavaWidget>
                           children: [
                             TextSpan(
                               text: valueOrDefault<String>(
-                                widget.scoreAchieved?.toString(),
+                                FFAppState().scores.toString(),
                                 '0',
                               ),
                               style: FlutterFlowTheme.of(context)

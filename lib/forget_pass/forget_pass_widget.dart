@@ -256,7 +256,7 @@ class _ForgetPassWidgetState extends State<ForgetPassWidget> {
                     color: const Color(0xFF35215B),
                     textStyle: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Plus Jakarta Sans',
-                          color: Colors.white,
+                          color: FlutterFlowTheme.of(context).info,
                           fontSize: 16.0,
                           fontWeight: FontWeight.w500,
                         ),

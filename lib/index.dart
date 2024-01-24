@@ -16,8 +16,6 @@ export '/python/python_widget.dart' show PythonWidget;
 export '/lessons_python/lessons_python_widget.dart' show LessonsPythonWidget;
 export '/quizzes_python/quizzes_python_widget.dart' show QuizzesPythonWidget;
 export '/page1/page1_widget.dart' show Page1Widget;
-export '/discussion_board/discussion_board_widget.dart'
-    show DiscussionBoardWidget;
 export '/about_us/about_us_widget.dart' show AboutUsWidget;
 export '/courses/courses_widget.dart' show CoursesWidget;
 export '/settings/settings_widget.dart' show SettingsWidget;
@@ -81,7 +79,6 @@ export '/quizzes_page/quizzes_page_widget.dart' show QuizzesPageWidget;
 export '/flash_cards/flash_cards_widget.dart' show FlashCardsWidget;
 export '/quizzes_page_write/quizzes_page_write_widget.dart'
     show QuizzesPageWriteWidget;
-export '/supportpage2/supportpage2_widget.dart' show Supportpage2Widget;
 export '/forget_pass/forget_pass_widget.dart' show ForgetPassWidget;
 export '/chat/chat_widget.dart' show ChatWidget;
 export '/notifications/notify/notify_widget.dart' show NotifyWidget;

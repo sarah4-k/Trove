@@ -1,4 +1,4 @@
-# Content Management System
+# Trove
 
 A new Flutter project.
 

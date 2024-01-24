@@ -74,7 +74,7 @@ class _FlashCardsWidgetState extends State<FlashCardsWidget> {
               size: 30.0,
             ),
             onPressed: () async {
-              context.safePop();
+              context.pop();
             },
           ),
           title: Text(
@@ -82,6 +82,7 @@ class _FlashCardsWidgetState extends State<FlashCardsWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Roboto',
                   fontSize: 25.0,
+                  fontWeight: FontWeight.w600,
                 ),
           ),
           actions: const [],

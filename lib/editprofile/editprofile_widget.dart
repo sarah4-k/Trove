@@ -401,7 +401,7 @@ class _EditprofileWidgetState extends State<EditprofileWidget> {
                     textStyle:
                         FlutterFlowTheme.of(context).titleMedium.override(
                               fontFamily: 'Plus Jakarta Sans',
-                              color: Colors.white,
+                              color: FlutterFlowTheme.of(context).info,
                               fontSize: 16.0,
                               fontWeight: FontWeight.w500,
                             ),

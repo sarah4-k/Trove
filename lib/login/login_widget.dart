@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/components/verify_email_widget.dart';
 import '/flutter_flow/flutter_flow_animations.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+import 'package:webviewx_plus/webviewx_plus.dart';
 import 'login_model.dart';
 export 'login_model.dart';
 
@@ -426,6 +428,7 @@ class _LoginWidgetState extends State<LoginWidget>
                                     0.0, 14.0, 0.0, 10.0),
                                 child: FFButtonWidget(
                                   onPressed: () async {
+                                    await authManager.refreshUser();
                                     GoRouter.of(context).prepareAuthEvent();
 
                                     final user =
@@ -438,22 +441,34 @@ class _LoginWidgetState extends State<LoginWidget>
                                       return;
                                     }
 
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          'welcom back!',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
-                                        ),
-                                        duration: const Duration(milliseconds: 4000),
-                                        backgroundColor: const Color(0xFF1B175E),
-                                      ),
-                                    );
-
-                                    context.pushNamedAuth(
-                                        'Homepage', context.mounted);
+                                    if (currentUserEmailVerified == true) {
+                                      context.pushNamedAuth(
+                                          'Homepage', context.mounted);
+                                    } else {
+                                      await showModalBottomSheet(
+                                        isScrollControlled: true,
+                                        backgroundColor: Colors.transparent,
+                                        enableDrag: false,
+                                        context: context,
+                                        builder: (context) {
+                                          return WebViewAware(
+                                              child: GestureDetector(
+                                            onTap: () => _model
+                                                    .unfocusNode.canRequestFocus
+                                                ? FocusScope.of(context)
+                                                    .requestFocus(
+                                                        _model.unfocusNode)
+                                                : FocusScope.of(context)
+                                                    .unfocus(),
+                                            child: Padding(
+                                              padding: MediaQuery.viewInsetsOf(
+                                                  context),
+                                              child: const VerifyEmailWidget(),
+                                            ),
+                                          ));
+                                        },
+                                      ).then((value) => safeSetState(() {}));
+                                    }
                                   },
                                   text: 'Log In',
                                   options: FFButtonOptions(
@@ -468,7 +483,8 @@ class _LoginWidgetState extends State<LoginWidget>
                                         .titleSmall
                                         .override(
                                           fontFamily: 'Plus Jakarta Sans',
-                                          color: Colors.white,
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.w500,
                                         ),

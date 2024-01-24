@@ -115,6 +115,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
+                          color: FlutterFlowTheme.of(context).info,
                           fontSize: 19.0,
                           fontWeight: FontWeight.w500,
                           lineHeight: 2.0,

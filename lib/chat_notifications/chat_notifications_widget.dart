@@ -88,27 +88,29 @@ class _ChatNotificationsWidgetState extends State<ChatNotificationsWidget> {
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,
               leading: FlutterFlowIconButton(
-                borderColor: FlutterFlowTheme.of(context).primaryBackground,
-                borderRadius: 20.0,
+                borderColor: Colors.transparent,
+                borderRadius: 30.0,
                 borderWidth: 1.0,
-                buttonSize: 40.0,
-                fillColor: FlutterFlowTheme.of(context).primaryBackground,
+                buttonSize: 60.0,
                 icon: Icon(
-                  Icons.arrow_back_rounded,
+                  Icons.keyboard_backspace,
                   color: FlutterFlowTheme.of(context).primaryText,
-                  size: 24.0,
+                  size: 30.0,
                 ),
                 onPressed: () async {
-                  context.pushNamed('chat');
+                  context.pop();
                 },
               ),
               title: Text(
                 'Posts',
-                style: FlutterFlowTheme.of(context).headlineLarge,
+                style: FlutterFlowTheme.of(context).headlineLarge.override(
+                      fontFamily: 'Roboto',
+                      fontSize: 25.0,
+                    ),
               ),
               actions: const [],
-              centerTitle: false,
-              elevation: 0.0,
+              centerTitle: true,
+              elevation: 5.0,
             ),
             body: Stack(
               children: [
@@ -185,12 +187,19 @@ class _ChatNotificationsWidgetState extends State<ChatNotificationsWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          Text(
-                                            chatNotificationsTopicsRecord
-                                                .category,
-                                            maxLines: 1,
-                                            style: FlutterFlowTheme.of(context)
-                                                .bodyLarge,
+                                          AuthUserStreamWidget(
+                                            builder: (context) => Text(
+                                              currentUserDisplayName,
+                                              maxLines: 1,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyLarge
+                                                      .override(
+                                                        fontFamily:
+                                                            'Readex Pro',
+                                                        fontSize: 12.0,
+                                                      ),
+                                            ),
                                           ),
                                           Padding(
                                             padding:

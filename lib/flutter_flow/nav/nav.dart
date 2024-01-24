@@ -175,17 +175,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Page1Widget(),
         ),
         FFRoute(
-          name: 'DiscussionBoard',
-          path: '/discussionBoard',
-          asyncParams: {
-            'notifications': getDoc(
-                ['users', 'Notifications2'], Notifications2Record.fromSnapshot),
-          },
-          builder: (context, params) => DiscussionBoardWidget(
-            notifications: params.getParam('notifications', ParamType.Document),
-          ),
-        ),
-        FFRoute(
           name: 'AboutUs',
           path: '/aboutUs',
           builder: (context, params) => const AboutUsWidget(),
@@ -394,11 +383,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'QuizzesPageWrite',
           path: '/quizzesPageWrite',
           builder: (context, params) => const QuizzesPageWriteWidget(),
-        ),
-        FFRoute(
-          name: 'supportpage2',
-          path: '/supportpage2',
-          builder: (context, params) => const Supportpage2Widget(),
         ),
         FFRoute(
           name: 'ForgetPass',

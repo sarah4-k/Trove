@@ -116,6 +116,7 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Roboto',
                         fontSize: 25.0,
+                        fontWeight: FontWeight.w600,
                       ),
                 ),
                 actions: const [],
@@ -204,6 +205,9 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                                     FlutterFlowTheme.of(context).secondary,
                               ),
                             );
+                            setState(() {
+                              FFAppState().scores = FFAppState().scores + 1;
+                            });
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
@@ -249,7 +253,7 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: FlutterFlowTheme.of(context).primary,
+                          color: const Color(0xFF1B175E),
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',

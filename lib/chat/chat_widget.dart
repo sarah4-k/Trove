@@ -75,6 +75,7 @@ class _ChatWidgetState extends State<ChatWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Roboto',
                   fontSize: 25.0,
+                  fontWeight: FontWeight.w600,
                 ),
           ),
           actions: const [],
@@ -254,15 +255,6 @@ class _ChatWidgetState extends State<ChatWidget> {
                                                               'Readex Pro',
                                                           fontSize: 16.0,
                                                         ),
-                                              ),
-                                              Text(
-                                                dateTimeFormat(
-                                                    'relative',
-                                                    listViewTopicsRecord
-                                                        .lastPost!),
-                                                style:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium,
                                               ),
                                             ],
                                           ),

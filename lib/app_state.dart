@@ -30,6 +30,9 @@ class FFAppState extends ChangeNotifier {
     _safeInit(() {
       _history = prefs.getStringList('ff_history') ?? _history;
     });
+    _safeInit(() {
+      _scores = prefs.getInt('ff_scores') ?? _scores;
+    });
   }
 
   void update(VoidCallback callback) {
@@ -163,6 +166,13 @@ class FFAppState extends ChangeNotifier {
   int get Score => _Score;
   set Score(int value) {
     _Score = value;
+  }
+
+  int _scores = 0;
+  int get scores => _scores;
+  set scores(int value) {
+    _scores = value;
+    prefs.setInt('ff_scores', value);
   }
 }
 

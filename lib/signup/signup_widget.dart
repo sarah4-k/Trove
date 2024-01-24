@@ -491,24 +491,30 @@ class _SignupWidgetState extends State<SignupWidget>
                                       return;
                                     }
 
+                                    await authManager.sendEmailVerification();
                                     ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                          'Account Created Successfly!',
-                                          style: TextStyle(
-                                            color: FlutterFlowTheme.of(context)
-                                                .primaryText,
-                                          ),
+                                          'Accunt Created Successfly!',
+                                          style: FlutterFlowTheme.of(context)
+                                              .bodyMedium
+                                              .override(
+                                                fontFamily: 'Roboto',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .info,
+                                                fontWeight: FontWeight.w600,
+                                              ),
                                         ),
                                         duration: const Duration(milliseconds: 4000),
                                         backgroundColor:
                                             FlutterFlowTheme.of(context)
-                                                .secondary,
+                                                .success,
                                       ),
                                     );
 
                                     context.pushNamedAuth(
-                                        'Page1', context.mounted);
+                                        'login', context.mounted);
                                   },
                                   text: 'Sign Up',
                                   options: FFButtonOptions(
@@ -523,7 +529,8 @@ class _SignupWidgetState extends State<SignupWidget>
                                         .titleSmall
                                         .override(
                                           fontFamily: 'Plus Jakarta Sans',
-                                          color: Colors.white,
+                                          color:
+                                              FlutterFlowTheme.of(context).info,
                                         ),
                                     elevation: 5.0,
                                     borderSide: const BorderSide(

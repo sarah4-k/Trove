@@ -506,7 +506,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                               padding: const EdgeInsetsDirectional.fromSTEB(
                                   15.0, 0.0, 0.0, 0.0),
                               child: Text(
-                                'Notification Settings',
+                                'User Manual',
                                 style: FlutterFlowTheme.of(context)
                                     .labelMedium
                                     .override(
@@ -556,7 +556,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                         textStyle:
                             FlutterFlowTheme.of(context).titleSmall.override(
                                   fontFamily: 'Plus Jakarta Sans',
-                                  color: Colors.white,
+                                  color: FlutterFlowTheme.of(context).info,
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.w500,
                                 ),

@@ -428,7 +428,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                                                           color: FlutterFlowTheme
                                                                   .of(context)
                                                               .primaryText,
-                                                          fontSize: 30.0,
+                                                          fontSize: 28.0,
                                                           fontWeight:
                                                               FontWeight.normal,
                                                         ),
@@ -442,7 +442,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                                                         .headlineMedium
                                                         .override(
                                                           fontFamily: 'Outfit',
-                                                          fontSize: 30.0,
+                                                          fontSize: 25.0,
                                                           fontWeight:
                                                               FontWeight.w600,
                                                         ),
@@ -1073,24 +1073,6 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                                 ),
                               ),
                             ],
-                          ),
-                        ),
-                        Align(
-                          alignment: const AlignmentDirectional(-0.26, 0.69),
-                          child: FlutterFlowIconButton(
-                            borderColor: FlutterFlowTheme.of(context).primary,
-                            borderRadius: 20.0,
-                            borderWidth: 1.0,
-                            buttonSize: 40.0,
-                            fillColor: FlutterFlowTheme.of(context).accent1,
-                            icon: Icon(
-                              Icons.add,
-                              color: FlutterFlowTheme.of(context).primaryText,
-                              size: 24.0,
-                            ),
-                            onPressed: () async {
-                              context.pushNamed('chat');
-                            },
                           ),
                         ),
                       ],
