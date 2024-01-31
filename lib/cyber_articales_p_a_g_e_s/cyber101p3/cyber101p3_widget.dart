@@ -11,7 +11,7 @@ class Cyber101p3Widget extends StatefulWidget {
   const Cyber101p3Widget({super.key});
 
   @override
-  _Cyber101p3WidgetState createState() => _Cyber101p3WidgetState();
+  State<Cyber101p3Widget> createState() => _Cyber101p3WidgetState();
 }
 
 class _Cyber101p3WidgetState extends State<Cyber101p3Widget> {
@@ -23,6 +23,8 @@ class _Cyber101p3WidgetState extends State<Cyber101p3Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Cyber101p3Model());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -69,7 +71,7 @@ class _Cyber101p3WidgetState extends State<Cyber101p3Widget> {
             },
           ),
           title: Text(
-            'Guide to Cyber Security for Beginners',
+            'Guide to Cybersecurity for Beginners',
             style: FlutterFlowTheme.of(context).bodyLarge,
           ),
           actions: [
@@ -102,7 +104,7 @@ class _Cyber101p3WidgetState extends State<Cyber101p3Widget> {
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
                 child: Text(
-                  'An Ultimate Guide to Cyber Security for Beginners\n',
+                  'An Ultimate Guide to  Cybersecurity for Beginners',
                   style: FlutterFlowTheme.of(context).headlineMedium.override(
                         fontFamily: 'Roboto',
                         fontWeight: FontWeight.normal,

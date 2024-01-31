@@ -19,7 +19,7 @@ class Stat4Widget extends StatefulWidget {
   final String? publshedTimeText;
 
   @override
-  _Stat4WidgetState createState() => _Stat4WidgetState();
+  State<Stat4Widget> createState() => _Stat4WidgetState();
 }
 
 class _Stat4WidgetState extends State<Stat4Widget> {
@@ -35,6 +35,8 @@ class _Stat4WidgetState extends State<Stat4Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Stat4Model());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

@@ -156,7 +156,7 @@ class _NavBarPageState extends State<NavBarPage> {
         tabMargin: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
         padding: const EdgeInsetsDirectional.fromSTEB(15.0, 15.0, 15.0, 15.0),
         gap: 0.0,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         duration: const Duration(milliseconds: 500),
         haptic: false,
         tabs: const [

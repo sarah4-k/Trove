@@ -22,9 +22,6 @@ class FFAppState extends ChangeNotifier {
       _initialSearch = prefs.getString('ff_initialSearch') ?? _initialSearch;
     });
     _safeInit(() {
-      _PintialSearch = prefs.getString('ff_PintialSearch') ?? _PintialSearch;
-    });
-    _safeInit(() {
       _CintialSearch = prefs.getString('ff_CintialSearch') ?? _CintialSearch;
     });
     _safeInit(() {
@@ -32,6 +29,9 @@ class FFAppState extends ChangeNotifier {
     });
     _safeInit(() {
       _scores = prefs.getInt('ff_scores') ?? _scores;
+    });
+    _safeInit(() {
+      _PintialSearch = prefs.getString('ff_PintialSearch') ?? _PintialSearch;
     });
   }
 
@@ -107,13 +107,6 @@ class FFAppState extends ChangeNotifier {
     _SearchRefinements.insert(index, value);
   }
 
-  String _PintialSearch = 'python programming';
-  String get PintialSearch => _PintialSearch;
-  set PintialSearch(String value) {
-    _PintialSearch = value;
-    prefs.setString('ff_PintialSearch', value);
-  }
-
   String _CintialSearch = 'cyberseacurity';
   String get CintialSearch => _CintialSearch;
   set CintialSearch(String value) {
@@ -173,6 +166,19 @@ class FFAppState extends ChangeNotifier {
   set scores(int value) {
     _scores = value;
     prefs.setInt('ff_scores', value);
+  }
+
+  int _seenQuestions = 0;
+  int get seenQuestions => _seenQuestions;
+  set seenQuestions(int value) {
+    _seenQuestions = value;
+  }
+
+  String _PintialSearch = 'Python programing  language';
+  String get PintialSearch => _PintialSearch;
+  set PintialSearch(String value) {
+    _PintialSearch = value;
+    prefs.setString('ff_PintialSearch', value);
   }
 }
 

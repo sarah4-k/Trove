@@ -12,7 +12,7 @@ class SearchPageWidget extends StatefulWidget {
   const SearchPageWidget({super.key});
 
   @override
-  _SearchPageWidgetState createState() => _SearchPageWidgetState();
+  State<SearchPageWidget> createState() => _SearchPageWidgetState();
 }
 
 class _SearchPageWidgetState extends State<SearchPageWidget>
@@ -28,6 +28,8 @@ class _SearchPageWidgetState extends State<SearchPageWidget>
 
     _model.searchTermController ??= TextEditingController();
     _model.searchTermFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

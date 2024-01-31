@@ -15,13 +15,15 @@ class SecondPageQuizJavaWidget extends StatefulWidget {
     super.key,
     required this.scoreAchieved,
     required this.totalQuestions,
+    this.seenQuestions,
   });
 
   final int? scoreAchieved;
   final int? totalQuestions;
+  final String? seenQuestions;
 
   @override
-  _SecondPageQuizJavaWidgetState createState() =>
+  State<SecondPageQuizJavaWidget> createState() =>
       _SecondPageQuizJavaWidgetState();
 }
 
@@ -95,6 +97,8 @@ class _SecondPageQuizJavaWidgetState extends State<SecondPageQuizJavaWidget>
   void initState() {
     super.initState();
     _model = createModel(context, () => SecondPageQuizJavaModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -218,35 +222,43 @@ class _SecondPageQuizJavaWidgetState extends State<SecondPageQuizJavaWidget>
                         text: TextSpan(
                           children: [
                             TextSpan(
-                              text: valueOrDefault<String>(
-                                FFAppState().scores.toString(),
-                                '0',
-                              ),
+                              text: 'You have ',
                               style: FlutterFlowTheme.of(context)
                                   .bodyMedium
                                   .override(
                                     fontFamily: 'Readex Pro',
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
                                   ),
                             ),
-                            const TextSpan(
-                              text: ' out of ',
-                              style: TextStyle(),
+                            TextSpan(
+                              text: valueOrDefault<String>(
+                                FFAppState().scores.toString(),
+                                '0',
+                              ),
+                              style: TextStyle(
+                                color: FlutterFlowTheme.of(context).primary,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                             const TextSpan(
-                              text: '15 ',
-                              style: TextStyle(),
+                              text: ' Points',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
                             ),
                             const TextSpan(
-                              text: 'are correct!',
-                              style: TextStyle(),
+                              text: ' in the Quizzes',
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
                             )
                           ],
                           style:
                               FlutterFlowTheme.of(context).bodyMedium.override(
                                     fontFamily: 'Readex Pro',
-                                    color: Colors.black,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryBackground,
                                     fontSize: 15.0,
                                   ),
                         ),

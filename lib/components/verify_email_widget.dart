@@ -12,7 +12,7 @@ class VerifyEmailWidget extends StatefulWidget {
   const VerifyEmailWidget({super.key});
 
   @override
-  _VerifyEmailWidgetState createState() => _VerifyEmailWidgetState();
+  State<VerifyEmailWidget> createState() => _VerifyEmailWidgetState();
 }
 
 class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
@@ -28,6 +28,8 @@ class _VerifyEmailWidgetState extends State<VerifyEmailWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => VerifyEmailModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

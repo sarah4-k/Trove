@@ -11,7 +11,7 @@ class SupportWidget extends StatefulWidget {
   const SupportWidget({super.key});
 
   @override
-  _SupportWidgetState createState() => _SupportWidgetState();
+  State<SupportWidget> createState() => _SupportWidgetState();
 }
 
 class _SupportWidgetState extends State<SupportWidget> {
@@ -23,6 +23,8 @@ class _SupportWidgetState extends State<SupportWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => SupportModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -104,7 +106,7 @@ class _SupportWidgetState extends State<SupportWidget> {
                     'assets/images/Trove2.png',
                     width: double.infinity,
                     height: 300.0,
-                    fit: BoxFit.cover,
+                    fit: BoxFit.contain,
                   ),
                 ),
                 Padding(

@@ -28,7 +28,7 @@ class QuizzsJavaCopyWidget extends StatefulWidget {
   final int? quizDuration;
 
   @override
-  _QuizzsJavaCopyWidgetState createState() => _QuizzsJavaCopyWidgetState();
+  State<QuizzsJavaCopyWidget> createState() => _QuizzsJavaCopyWidgetState();
 }
 
 class _QuizzsJavaCopyWidgetState extends State<QuizzsJavaCopyWidget> {
@@ -86,7 +86,7 @@ class _QuizzsJavaCopyWidgetState extends State<QuizzsJavaCopyWidget> {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             body: const Center(
               child: SizedBox(
                 width: 50.0,
@@ -107,7 +107,7 @@ class _QuizzsJavaCopyWidgetState extends State<QuizzsJavaCopyWidget> {
               : FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             appBar: AppBar(
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,

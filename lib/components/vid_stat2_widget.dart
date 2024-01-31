@@ -19,7 +19,7 @@ class VidStat2Widget extends StatefulWidget {
   final String? publishedTimeText;
 
   @override
-  _VidStat2WidgetState createState() => _VidStat2WidgetState();
+  State<VidStat2Widget> createState() => _VidStat2WidgetState();
 }
 
 class _VidStat2WidgetState extends State<VidStat2Widget> {
@@ -35,6 +35,8 @@ class _VidStat2WidgetState extends State<VidStat2Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => VidStat2Model());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

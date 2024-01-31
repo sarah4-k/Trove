@@ -11,7 +11,7 @@ class Page1Widget extends StatefulWidget {
   const Page1Widget({super.key});
 
   @override
-  _Page1WidgetState createState() => _Page1WidgetState();
+  State<Page1Widget> createState() => _Page1WidgetState();
 }
 
 class _Page1WidgetState extends State<Page1Widget> {
@@ -23,6 +23,8 @@ class _Page1WidgetState extends State<Page1Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Page1Model());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

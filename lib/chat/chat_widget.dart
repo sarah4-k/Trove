@@ -12,7 +12,7 @@ class ChatWidget extends StatefulWidget {
   const ChatWidget({super.key});
 
   @override
-  _ChatWidgetState createState() => _ChatWidgetState();
+  State<ChatWidget> createState() => _ChatWidgetState();
 }
 
 class _ChatWidgetState extends State<ChatWidget> {
@@ -24,6 +24,8 @@ class _ChatWidgetState extends State<ChatWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => ChatModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -119,7 +121,7 @@ class _ChatWidgetState extends State<ChatWidget> {
                               listViewTopicsRecordList[listViewIndex];
                           return Padding(
                             padding: const EdgeInsetsDirectional.fromSTEB(
-                                16.0, 0.0, 16.0, 16.0),
+                                16.0, 10.0, 16.0, 10.0),
                             child: StreamBuilder<List<PostsRecord>>(
                               stream: queryPostsRecord(
                                 parent: listViewTopicsRecord.reference,

@@ -10,7 +10,8 @@ Future initFirebase() async {
             projectId: "content-management-syste-fd3bb",
             storageBucket: "content-management-syste-fd3bb.appspot.com",
             messagingSenderId: "799628828573",
-            appId: "1:799628828573:web:9c52f833601feb7dac9974"));
+            appId: "1:799628828573:web:9c52f833601feb7dac9974",
+            measurementId: "G-RC7FZ6SZ4Q"));
   } else {
     await Firebase.initializeApp();
   }

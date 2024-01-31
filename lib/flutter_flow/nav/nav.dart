@@ -121,7 +121,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         ),
         FFRoute(
           name: 'CyberSecurity',
-          path: '/cyberSecurity',
+          path: '/CyberSecurity',
           builder: (context, params) => const CyberSecurityWidget(),
         ),
         FFRoute(
@@ -130,11 +130,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => LessonsCyberSecurityWidget(
             video: params.getParam<dynamic>('video', ParamType.JSON, true),
           ),
-        ),
-        FFRoute(
-          name: 'QuizzesCyberSecurity',
-          path: '/quizzesCyberSecurity',
-          builder: (context, params) => const QuizzesCyberSecurityWidget(),
         ),
         FFRoute(
           name: 'login',
@@ -152,6 +147,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => SecondPageQuizJavaWidget(
             scoreAchieved: params.getParam('scoreAchieved', ParamType.int),
             totalQuestions: params.getParam('totalQuestions', ParamType.int),
+            seenQuestions: params.getParam('seenQuestions', ParamType.String),
           ),
         ),
         FFRoute(
@@ -163,11 +159,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'LessonsPython',
           path: '/lessonsPython',
           builder: (context, params) => const LessonsPythonWidget(),
-        ),
-        FFRoute(
-          name: 'QuizzesPython',
-          path: '/quizzesPython',
-          builder: (context, params) => const QuizzesPythonWidget(),
         ),
         FFRoute(
           name: 'Page1',
@@ -269,11 +260,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const EditprofileWidget(),
         ),
         FFRoute(
-          name: 'blank',
-          path: '/blank',
-          builder: (context, params) => const BlankWidget(),
-        ),
-        FFRoute(
           name: 'Java101p3',
           path: '/java101p3',
           builder: (context, params) => const Java101p3Widget(),
@@ -344,11 +330,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const Cyber101p5Widget(),
         ),
         FFRoute(
-          name: 'PythonQuiz',
-          path: '/pythonQuiz',
-          builder: (context, params) => const PythonQuizWidget(),
-        ),
-        FFRoute(
           name: 'QuizzsJavaCopy',
           path: '/quizzsJavaCopy',
           builder: (context, params) => QuizzsJavaCopyWidget(
@@ -407,6 +388,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             topicid: params.getParam(
                 'topicid', ParamType.DocumentReference, false, ['topics']),
           ),
+        ),
+        FFRoute(
+          name: 'UserManual',
+          path: '/userManual',
+          builder: (context, params) => const UserManualWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
       observers: [routeObserver],

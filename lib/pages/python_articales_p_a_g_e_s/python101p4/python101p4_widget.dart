@@ -12,7 +12,7 @@ class Python101p4Widget extends StatefulWidget {
   const Python101p4Widget({super.key});
 
   @override
-  _Python101p4WidgetState createState() => _Python101p4WidgetState();
+  State<Python101p4Widget> createState() => _Python101p4WidgetState();
 }
 
 class _Python101p4WidgetState extends State<Python101p4Widget> {
@@ -29,6 +29,8 @@ class _Python101p4WidgetState extends State<Python101p4Widget> {
     SchedulerBinding.instance.addPostFrameCallback((_) async {
       context.pushNamed('Python101p5');
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

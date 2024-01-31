@@ -20,7 +20,7 @@ class LessonsCyberSecurityWidget extends StatefulWidget {
   final List<dynamic>? video;
 
   @override
-  _LessonsCyberSecurityWidgetState createState() =>
+  State<LessonsCyberSecurityWidget> createState() =>
       _LessonsCyberSecurityWidgetState();
 }
 
@@ -61,6 +61,8 @@ class _LessonsCyberSecurityWidgetState
         }
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -107,7 +109,7 @@ class _LessonsCyberSecurityWidgetState
             },
           ),
           title: Text(
-            'Cyber Secuarity',
+            'Cybersecurity',
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Roboto',
@@ -145,92 +147,100 @@ class _LessonsCyberSecurityWidgetState
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(10.0),
             child: SingleChildScrollView(
               child: Column(
                 mainAxisSize: MainAxisSize.max,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Builder(
-                    builder: (context) {
-                      final refinments =
-                          FFAppState().SearchRefinements.toList();
-                      return SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: List.generate(refinments.length,
-                              (refinmentsIndex) {
-                            final refinmentsItem = refinments[refinmentsIndex];
-                            return Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 10.0, 0.0),
-                              child: InkWell(
-                                splashColor: Colors.transparent,
-                                focusColor: Colors.transparent,
-                                hoverColor: Colors.transparent,
-                                highlightColor: Colors.transparent,
-                                onTap: () async {
-                                  _model.apiResultn6f = await SearchCall.call(
-                                    apiQuery: refinmentsItem.toString(),
-                                  );
-                                  if ((_model.apiResultn6f?.succeeded ??
-                                      true)) {
-                                    setState(() {
-                                      FFAppState().searchresults =
-                                          SearchCall.video(
-                                        (_model.apiResultn6f?.jsonBody ?? ''),
-                                      )!
-                                              .toList()
-                                              .cast<dynamic>();
-                                    });
-                                    setState(() {
-                                      FFAppState().SearchRefinements =
-                                          getJsonField(
-                                        (_model.apiResultn6f?.jsonBody ?? ''),
-                                        r'''$.refinements''',
-                                        true,
-                                      )!
-                                              .toList()
-                                              .cast<dynamic>();
-                                    });
-                                  }
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
+                    child: Builder(
+                      builder: (context) {
+                        final refinments =
+                            FFAppState().SearchRefinements.toList();
+                        return SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: List.generate(refinments.length,
+                                (refinmentsIndex) {
+                              final refinmentsItem =
+                                  refinments[refinmentsIndex];
+                              return Padding(
+                                padding: const EdgeInsetsDirectional.fromSTEB(
+                                    0.0, 0.0, 10.0, 0.0),
+                                child: InkWell(
+                                  splashColor: Colors.transparent,
+                                  focusColor: Colors.transparent,
+                                  hoverColor: Colors.transparent,
+                                  highlightColor: Colors.transparent,
+                                  onTap: () async {
+                                    _model.apiResultn6f = await SearchCall.call(
+                                      apiQuery: refinmentsItem.toString(),
+                                    );
+                                    if ((_model.apiResultn6f?.succeeded ??
+                                        true)) {
+                                      setState(() {
+                                        FFAppState().searchresults =
+                                            SearchCall.video(
+                                          (_model.apiResultn6f?.jsonBody ?? ''),
+                                        )!
+                                                .toList()
+                                                .cast<dynamic>();
+                                      });
+                                      setState(() {
+                                        FFAppState().SearchRefinements =
+                                            getJsonField(
+                                          (_model.apiResultn6f?.jsonBody ?? ''),
+                                          r'''$.refinements''',
+                                          true,
+                                        )!
+                                                .toList()
+                                                .cast<dynamic>();
+                                      });
+                                    }
 
-                                  setState(() {});
-                                },
-                                child: Container(
-                                  width: 100.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryBackground,
-                                    borderRadius: BorderRadius.circular(25.0),
-                                  ),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.min,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          refinmentsItem.toString(),
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .bodyMedium
-                                              .override(
-                                                fontFamily: 'Readex Pro',
-                                                fontSize: 12.0,
-                                              ),
+                                    setState(() {});
+                                  },
+                                  child: Container(
+                                    width: 100.0,
+                                    height: 40.0,
+                                    decoration: BoxDecoration(
+                                      color: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                      borderRadius: BorderRadius.circular(25.0),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            refinmentsItem.toString(),
+                                            textAlign: TextAlign.center,
+                                            style: FlutterFlowTheme.of(context)
+                                                .bodyMedium
+                                                .override(
+                                                  fontFamily: 'Readex Pro',
+                                                  fontSize: 12.0,
+                                                ),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          }),
-                        ),
-                      );
-                    },
+                              );
+                            }),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                   Padding(
                     padding:

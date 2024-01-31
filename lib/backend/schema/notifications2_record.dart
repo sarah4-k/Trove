@@ -43,8 +43,8 @@ class Notifications2Record extends FirestoreRecord {
           ? parent.collection('Notifications2')
           : FirebaseFirestore.instance.collectionGroup('Notifications2');
 
-  static DocumentReference createDoc(DocumentReference parent) =>
-      parent.collection('Notifications2').doc();
+  static DocumentReference createDoc(DocumentReference parent, {String? id}) =>
+      parent.collection('Notifications2').doc(id);
 
   static Stream<Notifications2Record> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => Notifications2Record.fromSnapshot(s));

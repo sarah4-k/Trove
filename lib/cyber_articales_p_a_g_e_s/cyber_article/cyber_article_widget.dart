@@ -11,7 +11,7 @@ class CyberArticleWidget extends StatefulWidget {
   const CyberArticleWidget({super.key});
 
   @override
-  _CyberArticleWidgetState createState() => _CyberArticleWidgetState();
+  State<CyberArticleWidget> createState() => _CyberArticleWidgetState();
 }
 
 class _CyberArticleWidgetState extends State<CyberArticleWidget> {
@@ -23,6 +23,8 @@ class _CyberArticleWidgetState extends State<CyberArticleWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CyberArticleModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -79,7 +81,7 @@ class _CyberArticleWidgetState extends State<CyberArticleWidget> {
             ),
           ),
           title: Text(
-            'Cyber Security Articles',
+            'Cybersecurity Articles',
             textAlign: TextAlign.center,
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Roboto',

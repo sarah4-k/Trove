@@ -21,7 +21,7 @@ class VideoStatWidget extends StatefulWidget {
   final bool? showAuthor;
 
   @override
-  _VideoStatWidgetState createState() => _VideoStatWidgetState();
+  State<VideoStatWidget> createState() => _VideoStatWidgetState();
 }
 
 class _VideoStatWidgetState extends State<VideoStatWidget> {
@@ -37,6 +37,8 @@ class _VideoStatWidgetState extends State<VideoStatWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => VideoStatModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

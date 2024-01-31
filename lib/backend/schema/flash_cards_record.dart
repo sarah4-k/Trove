@@ -43,8 +43,8 @@ class FlashCardsRecord extends FirestoreRecord {
           ? parent.collection('flashCards')
           : FirebaseFirestore.instance.collectionGroup('flashCards');
 
-  static DocumentReference createDoc(DocumentReference parent) =>
-      parent.collection('flashCards').doc();
+  static DocumentReference createDoc(DocumentReference parent, {String? id}) =>
+      parent.collection('flashCards').doc(id);
 
   static Stream<FlashCardsRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => FlashCardsRecord.fromSnapshot(s));

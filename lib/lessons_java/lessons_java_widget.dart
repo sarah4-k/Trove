@@ -21,7 +21,7 @@ class LessonsJavaWidget extends StatefulWidget {
   final DocumentReference? quizReff;
 
   @override
-  _LessonsJavaWidgetState createState() => _LessonsJavaWidgetState();
+  State<LessonsJavaWidget> createState() => _LessonsJavaWidgetState();
 }
 
 class _LessonsJavaWidgetState extends State<LessonsJavaWidget> {
@@ -60,6 +60,8 @@ class _LessonsJavaWidgetState extends State<LessonsJavaWidget> {
         }
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -257,11 +259,6 @@ class _LessonsJavaWidgetState extends State<LessonsJavaWidget> {
                           },
                         ),
                       ),
-                      const Divider(
-                        height: 8.0,
-                        thickness: 1.0,
-                        color: Color(0xFFE5E7EB),
-                      ),
                       Padding(
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             0.0, 20.0, 0.0, 20.0),
@@ -325,7 +322,7 @@ class _LessonsJavaWidgetState extends State<LessonsJavaWidget> {
                                                   videoItem,
                                                   r'''$.thumbnails[0].url''',
                                                 ).toString(),
-                                                width: 750.0,
+                                                width: double.infinity,
                                                 height: 200.0,
                                                 fit: BoxFit.cover,
                                               ),

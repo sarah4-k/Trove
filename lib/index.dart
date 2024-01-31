@@ -6,15 +6,12 @@ export '/pages/quizzs_java/quizzs_java_widget.dart' show QuizzsJavaWidget;
 export '/cyber_security/cyber_security_widget.dart' show CyberSecurityWidget;
 export '/lessons_cyber_security/lessons_cyber_security_widget.dart'
     show LessonsCyberSecurityWidget;
-export '/quizzes_cyber_security/quizzes_cyber_security_widget.dart'
-    show QuizzesCyberSecurityWidget;
 export '/login/login_widget.dart' show LoginWidget;
 export '/signup/signup_widget.dart' show SignupWidget;
 export '/second_page_quiz_java/second_page_quiz_java_widget.dart'
     show SecondPageQuizJavaWidget;
 export '/python/python_widget.dart' show PythonWidget;
 export '/lessons_python/lessons_python_widget.dart' show LessonsPythonWidget;
-export '/quizzes_python/quizzes_python_widget.dart' show QuizzesPythonWidget;
 export '/page1/page1_widget.dart' show Page1Widget;
 export '/about_us/about_us_widget.dart' show AboutUsWidget;
 export '/courses/courses_widget.dart' show CoursesWidget;
@@ -34,14 +31,12 @@ export '/pages/java_articales_p_a_g_e_s/java101p2/java101p2_widget.dart'
     show Java101p2Widget;
 export '/pages/java_articales_p_a_g_e_s/java101p4/java101p4_widget.dart'
     show Java101p4Widget;
-export '/pages/java_articales_p_a_g_e_s/java101p5/java101p5_widget.dart'
-    show Java101p5Widget;
+export '/pages/java101p5/java101p5_widget.dart' show Java101p5Widget;
 export '/pages/java101p7/java101p7_widget.dart' show Java101p7Widget;
 export '/pages/java_articales_p_a_g_e_s/java101p6/java101p6_widget.dart'
     show Java101p6Widget;
 export '/pages/java101p8/java101p8_widget.dart' show Java101p8Widget;
 export '/editprofile/editprofile_widget.dart' show EditprofileWidget;
-export '/pages/blank/blank_widget.dart' show BlankWidget;
 export '/pages/java_articales_p_a_g_e_s/java101p3/java101p3_widget.dart'
     show Java101p3Widget;
 export '/pages/python_articales_p_a_g_e_s/python101p1/python101p1_widget.dart'
@@ -70,7 +65,6 @@ export '/cyber_articales_p_a_g_e_s/cyber101p4/cyber101p4_widget.dart'
     show Cyber101p4Widget;
 export '/cyber_articales_p_a_g_e_s/cyber101p5/cyber101p5_widget.dart'
     show Cyber101p5Widget;
-export '/pages/python_quiz/python_quiz_widget.dart' show PythonQuizWidget;
 export '/pages/quizzs_java_copy/quizzs_java_copy_widget.dart'
     show QuizzsJavaCopyWidget;
 export '/pages/quizzs_java_copy_copy/quizzs_java_copy_copy_widget.dart'
@@ -84,3 +78,4 @@ export '/chat/chat_widget.dart' show ChatWidget;
 export '/notifications/notify/notify_widget.dart' show NotifyWidget;
 export '/chat_notifications/chat_notifications_widget.dart'
     show ChatNotificationsWidget;
+export '/user_manual/user_manual_widget.dart' show UserManualWidget;

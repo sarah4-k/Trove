@@ -9,7 +9,7 @@ class UserWidget extends StatefulWidget {
   const UserWidget({super.key});
 
   @override
-  _UserWidgetState createState() => _UserWidgetState();
+  State<UserWidget> createState() => _UserWidgetState();
 }
 
 class _UserWidgetState extends State<UserWidget> {
@@ -25,6 +25,8 @@ class _UserWidgetState extends State<UserWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => UserModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

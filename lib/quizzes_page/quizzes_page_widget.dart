@@ -13,7 +13,7 @@ class QuizzesPageWidget extends StatefulWidget {
   const QuizzesPageWidget({super.key});
 
   @override
-  _QuizzesPageWidgetState createState() => _QuizzesPageWidgetState();
+  State<QuizzesPageWidget> createState() => _QuizzesPageWidgetState();
 }
 
 class _QuizzesPageWidgetState extends State<QuizzesPageWidget> {
@@ -25,6 +25,8 @@ class _QuizzesPageWidgetState extends State<QuizzesPageWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => QuizzesPageModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -179,30 +181,36 @@ class _QuizzesPageWidgetState extends State<QuizzesPageWidget> {
               ),
               Row(
                 mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  FFButtonWidget(
-                    onPressed: () async {
-                      context.pushNamed('QuizzesPageWrite');
-                    },
-                    text: 'Writting answers',
-                    options: FFButtonOptions(
-                      height: 40.0,
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                      iconPadding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      color: const Color(0xFF1B175E),
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleSmall.override(
-                                fontFamily: 'Readex Pro',
-                                color: Colors.white,
-                              ),
-                      elevation: 3.0,
-                      borderSide: const BorderSide(
-                        color: Colors.transparent,
-                        width: 1.0,
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 15.0),
+                    child: FFButtonWidget(
+                      onPressed: () async {
+                        context.pushNamed('QuizzesPageWrite');
+                      },
+                      text: 'Writting answers',
+                      options: FFButtonOptions(
+                        width: 330.0,
+                        height: 45.0,
+                        padding: const EdgeInsetsDirectional.fromSTEB(
+                            24.0, 0.0, 24.0, 0.0),
+                        iconPadding:
+                            const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                        color: const Color(0xFF35215B),
+                        textStyle:
+                            FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Readex Pro',
+                                  color: Colors.white,
+                                ),
+                        elevation: 3.0,
+                        borderSide: const BorderSide(
+                          color: Colors.transparent,
+                          width: 1.0,
+                        ),
+                        borderRadius: BorderRadius.circular(8.0),
                       ),
-                      borderRadius: BorderRadius.circular(8.0),
                     ),
                   ),
                 ],

@@ -37,8 +37,8 @@ class QuestionCRecord extends FirestoreRecord {
           ? parent.collection('question_c')
           : FirebaseFirestore.instance.collectionGroup('question_c');
 
-  static DocumentReference createDoc(DocumentReference parent) =>
-      parent.collection('question_c').doc();
+  static DocumentReference createDoc(DocumentReference parent, {String? id}) =>
+      parent.collection('question_c').doc(id);
 
   static Stream<QuestionCRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => QuestionCRecord.fromSnapshot(s));

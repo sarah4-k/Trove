@@ -11,7 +11,7 @@ class Java101p3Widget extends StatefulWidget {
   const Java101p3Widget({super.key});
 
   @override
-  _Java101p3WidgetState createState() => _Java101p3WidgetState();
+  State<Java101p3Widget> createState() => _Java101p3WidgetState();
 }
 
 class _Java101p3WidgetState extends State<Java101p3Widget> {
@@ -23,6 +23,8 @@ class _Java101p3WidgetState extends State<Java101p3Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Java101p3Model());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

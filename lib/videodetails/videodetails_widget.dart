@@ -18,7 +18,7 @@ class VideodetailsWidget extends StatefulWidget {
   final dynamic video;
 
   @override
-  _VideodetailsWidgetState createState() => _VideodetailsWidgetState();
+  State<VideodetailsWidget> createState() => _VideodetailsWidgetState();
 }
 
 class _VideodetailsWidgetState extends State<VideodetailsWidget> {
@@ -30,6 +30,8 @@ class _VideodetailsWidgetState extends State<VideodetailsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => VideodetailsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

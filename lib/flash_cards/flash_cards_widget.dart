@@ -19,7 +19,7 @@ class FlashCardsWidget extends StatefulWidget {
   final DocumentReference? lahguageRef;
 
   @override
-  _FlashCardsWidgetState createState() => _FlashCardsWidgetState();
+  State<FlashCardsWidget> createState() => _FlashCardsWidgetState();
 }
 
 class _FlashCardsWidgetState extends State<FlashCardsWidget> {
@@ -31,6 +31,8 @@ class _FlashCardsWidgetState extends State<FlashCardsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => FlashCardsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -59,7 +61,7 @@ class _FlashCardsWidgetState extends State<FlashCardsWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
           automaticallyImplyLeading: false,
@@ -93,6 +95,7 @@ class _FlashCardsWidgetState extends State<FlashCardsWidget> {
           top: true,
           child: Column(
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Expanded(
                 child: StreamBuilder<List<FlashCardsRecord>>(
@@ -144,39 +147,32 @@ class _FlashCardsWidgetState extends State<FlashCardsWidget> {
                   },
                 ),
               ),
-              FFButtonWidget(
-                onPressed: () async {
-                  context.pushNamed(
-                    'SecondPageQuizJava',
-                    queryParameters: {
-                      'scoreAchieved': serializeParam(
-                        0,
-                        ParamType.int,
-                      ),
-                      'totalQuestions': serializeParam(
-                        0,
-                        ParamType.int,
-                      ),
-                    }.withoutNulls,
-                  );
-                },
-                text: 'Finish',
-                options: FFButtonOptions(
-                  height: 40.0,
-                  padding: const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                  iconPadding:
-                      const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                  color: FlutterFlowTheme.of(context).primary,
-                  textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                        fontFamily: 'Readex Pro',
-                        color: Colors.white,
-                      ),
-                  elevation: 3.0,
-                  borderSide: const BorderSide(
-                    color: Colors.transparent,
-                    width: 1.0,
+              Padding(
+                padding: const EdgeInsets.all(40.0),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    context.safePop();
+                  },
+                  text: 'Finish',
+                  options: FFButtonOptions(
+                    width: double.infinity,
+                    height: 45.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFF35215B),
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Readex Pro',
+                          color: FlutterFlowTheme.of(context).info,
+                        ),
+                    elevation: 3.0,
+                    borderSide: const BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
                   ),
-                  borderRadius: BorderRadius.circular(8.0),
                 ),
               ),
             ],

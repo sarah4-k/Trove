@@ -17,7 +17,7 @@ class CoursesWidget extends StatefulWidget {
   final DocumentReference? refQuiz;
 
   @override
-  _CoursesWidgetState createState() => _CoursesWidgetState();
+  State<CoursesWidget> createState() => _CoursesWidgetState();
 }
 
 class _CoursesWidgetState extends State<CoursesWidget> {
@@ -29,6 +29,8 @@ class _CoursesWidgetState extends State<CoursesWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => CoursesModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

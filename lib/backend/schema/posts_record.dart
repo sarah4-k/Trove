@@ -43,8 +43,8 @@ class PostsRecord extends FirestoreRecord {
           ? parent.collection('posts')
           : FirebaseFirestore.instance.collectionGroup('posts');
 
-  static DocumentReference createDoc(DocumentReference parent) =>
-      parent.collection('posts').doc();
+  static DocumentReference createDoc(DocumentReference parent, {String? id}) =>
+      parent.collection('posts').doc(id);
 
   static Stream<PostsRecord> getDocument(DocumentReference ref) =>
       ref.snapshots().map((s) => PostsRecord.fromSnapshot(s));

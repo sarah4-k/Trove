@@ -11,7 +11,7 @@ class JavaArticlesWidget extends StatefulWidget {
   const JavaArticlesWidget({super.key});
 
   @override
-  _JavaArticlesWidgetState createState() => _JavaArticlesWidgetState();
+  State<JavaArticlesWidget> createState() => _JavaArticlesWidgetState();
 }
 
 class _JavaArticlesWidgetState extends State<JavaArticlesWidget> {
@@ -23,6 +23,8 @@ class _JavaArticlesWidgetState extends State<JavaArticlesWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => JavaArticlesModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

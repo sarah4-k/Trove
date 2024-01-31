@@ -13,7 +13,7 @@ class NotifyWidget extends StatefulWidget {
   const NotifyWidget({super.key});
 
   @override
-  _NotifyWidgetState createState() => _NotifyWidgetState();
+  State<NotifyWidget> createState() => _NotifyWidgetState();
 }
 
 class _NotifyWidgetState extends State<NotifyWidget> {
@@ -25,6 +25,8 @@ class _NotifyWidgetState extends State<NotifyWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => NotifyModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

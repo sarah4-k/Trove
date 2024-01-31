@@ -28,7 +28,7 @@ class QuizzsJavaWidget extends StatefulWidget {
   final int? quizDuration;
 
   @override
-  _QuizzsJavaWidgetState createState() => _QuizzsJavaWidgetState();
+  State<QuizzsJavaWidget> createState() => _QuizzsJavaWidgetState();
 }
 
 class _QuizzsJavaWidgetState extends State<QuizzsJavaWidget> {
@@ -86,7 +86,7 @@ class _QuizzsJavaWidgetState extends State<QuizzsJavaWidget> {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             body: const Center(
               child: SizedBox(
                 width: 50.0,
@@ -107,7 +107,7 @@ class _QuizzsJavaWidgetState extends State<QuizzsJavaWidget> {
               : FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             appBar: AppBar(
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,

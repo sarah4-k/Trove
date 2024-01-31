@@ -18,7 +18,7 @@ class ChatNotificationsWidget extends StatefulWidget {
   final DocumentReference? topicid;
 
   @override
-  _ChatNotificationsWidgetState createState() =>
+  State<ChatNotificationsWidget> createState() =>
       _ChatNotificationsWidgetState();
 }
 
@@ -34,6 +34,8 @@ class _ChatNotificationsWidgetState extends State<ChatNotificationsWidget> {
 
     _model.inputNewPostController ??= TextEditingController();
     _model.inputNewPostFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -62,7 +64,7 @@ class _ChatNotificationsWidgetState extends State<ChatNotificationsWidget> {
         // Customize what your widget looks like when it's loading.
         if (!snapshot.hasData) {
           return Scaffold(
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             body: const Center(
               child: SizedBox(
                 width: 50.0,
@@ -83,7 +85,7 @@ class _ChatNotificationsWidgetState extends State<ChatNotificationsWidget> {
               : FocusScope.of(context).unfocus(),
           child: Scaffold(
             key: scaffoldKey,
-            backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             appBar: AppBar(
               backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
               automaticallyImplyLeading: false,
@@ -187,20 +189,6 @@ class _ChatNotificationsWidgetState extends State<ChatNotificationsWidget> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: [
-                                          AuthUserStreamWidget(
-                                            builder: (context) => Text(
-                                              currentUserDisplayName,
-                                              maxLines: 1,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily:
-                                                            'Readex Pro',
-                                                        fontSize: 12.0,
-                                                      ),
-                                            ),
-                                          ),
                                           Padding(
                                             padding:
                                                 const EdgeInsetsDirectional.fromSTEB(
@@ -271,13 +259,12 @@ class _ChatNotificationsWidgetState extends State<ChatNotificationsWidget> {
                 Align(
                   alignment: const AlignmentDirectional(0.0, 1.0),
                   child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 20.0),
+                    padding: const EdgeInsets.all(20.0),
                     child: Container(
-                      width: 363.0,
-                      height: 90.0,
+                      width: double.infinity,
+                      height: 50.0,
                       decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        color: FlutterFlowTheme.of(context).primaryBackground,
                         borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(15.0),
                           bottomRight: Radius.circular(15.0),
@@ -289,62 +276,78 @@ class _ChatNotificationsWidgetState extends State<ChatNotificationsWidget> {
                         alignment: const AlignmentDirectional(1.0, 1.0),
                         child: Row(
                           mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Expanded(
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    8.0, 0.0, 8.0, 0.0),
-                                child: TextFormField(
-                                  controller: _model.inputNewPostController,
-                                  focusNode: _model.inputNewPostFocusNode,
-                                  autofocus: true,
-                                  obscureText: false,
-                                  decoration: InputDecoration(
-                                    labelStyle:
+                                    10.0, 5.0, 5.0, 5.0),
+                                child: SizedBox(
+                                  width: double.infinity,
+                                  child: TextFormField(
+                                    controller: _model.inputNewPostController,
+                                    focusNode: _model.inputNewPostFocusNode,
+                                    autofocus: true,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      labelStyle: FlutterFlowTheme.of(context)
+                                          .bodyMedium,
+                                      alignLabelWithHint: false,
+                                      hintText: 'Type a message',
+                                      hintStyle: FlutterFlowTheme.of(context)
+                                          .labelMedium
+                                          .override(
+                                            fontFamily: 'Roboto',
+                                            fontSize: 16.0,
+                                            fontWeight: FontWeight.normal,
+                                          ),
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primaryBackground,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .primary,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      errorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      focusedErrorBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: FlutterFlowTheme.of(context)
+                                              .error,
+                                          width: 2.0,
+                                        ),
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      filled: true,
+                                      fillColor: FlutterFlowTheme.of(context)
+                                          .primaryBackground,
+                                    ),
+                                    style:
                                         FlutterFlowTheme.of(context).bodyMedium,
-                                    alignLabelWithHint: false,
-                                    hintText: 'Type a message',
-                                    hintStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium,
-                                    enabledBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .alternate,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: FlutterFlowTheme.of(context)
-                                            .primary,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    errorBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    focusedErrorBorder: UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            FlutterFlowTheme.of(context).error,
-                                        width: 2.0,
-                                      ),
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
+                                    validator: _model
+                                        .inputNewPostControllerValidator
+                                        .asValidator(context),
                                   ),
-                                  style:
-                                      FlutterFlowTheme.of(context).bodyMedium,
-                                  validator: _model
-                                      .inputNewPostControllerValidator
-                                      .asValidator(context),
                                 ),
                               ),
                             ),
@@ -352,17 +355,14 @@ class _ChatNotificationsWidgetState extends State<ChatNotificationsWidget> {
                               child: Align(
                                 alignment: const AlignmentDirectional(1.0, 1.0),
                                 child: FlutterFlowIconButton(
-                                  borderColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
-                                  borderRadius: 20.0,
+                                  borderRadius: 30.0,
                                   borderWidth: 1.0,
-                                  buttonSize: 40.0,
-                                  fillColor: FlutterFlowTheme.of(context)
-                                      .secondaryBackground,
+                                  buttonSize: 60.0,
                                   icon: Icon(
-                                    Icons.send,
-                                    color: FlutterFlowTheme.of(context).primary,
-                                    size: 20.0,
+                                    Icons.send_rounded,
+                                    color: FlutterFlowTheme.of(context)
+                                        .secondaryText,
+                                    size: 30.0,
                                   ),
                                   onPressed: () async {
                                     await PostsRecord.createDoc(widget.topicid!)

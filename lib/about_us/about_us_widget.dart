@@ -11,7 +11,7 @@ class AboutUsWidget extends StatefulWidget {
   const AboutUsWidget({super.key});
 
   @override
-  _AboutUsWidgetState createState() => _AboutUsWidgetState();
+  State<AboutUsWidget> createState() => _AboutUsWidgetState();
 }
 
 class _AboutUsWidgetState extends State<AboutUsWidget> {
@@ -23,6 +23,8 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => AboutUsModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -94,36 +96,26 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
             ),
             shape: BoxShape.rectangle,
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8.0),
-                  child: Image.asset(
-                    'assets/images/Trove2.png',
-                    width: double.infinity,
-                    height: 300.0,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsetsDirectional.fromSTEB(44.0, 10.0, 44.0, 0.0),
-                  child: Text(
-                    'Trove is an educational application that provides courses, containing recorded lectures, articles, and short tests in the computer science field. you can view them anytime, anywhere.',
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    'About Trove\nTrove is an educational application that provides courses, containing recorded lectures, articles, and short tests in the computer science field. You can view them anytime, anywhere.\n\nOur Goals\nEnhancing people\'s technical skills and creating a future of achievers.\n\nOur Mission\nSince distance learning has grown in importance in recent years, we have designed our application to be an interactive learning space environment that provides all ways of learning for students and we at Trove provide courses in the computer science field of study.\n\nTeam Members:\nAryaf Alotaibi     Haifa Alsadi\nManar Abutheeb     Noura Abuthnain\nRenad Altoum     Sarah Alkherayef\n',
                     textAlign: TextAlign.center,
                     style: FlutterFlowTheme.of(context).titleSmall.override(
                           fontFamily: 'Readex Pro',
                           color: FlutterFlowTheme.of(context).info,
-                          fontSize: 20.0,
+                          fontSize: 15.0,
                           fontWeight: FontWeight.w500,
                           lineHeight: 2.0,
                         ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

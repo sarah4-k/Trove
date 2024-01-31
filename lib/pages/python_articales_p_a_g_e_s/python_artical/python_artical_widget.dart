@@ -11,7 +11,7 @@ class PythonArticalWidget extends StatefulWidget {
   const PythonArticalWidget({super.key});
 
   @override
-  _PythonArticalWidgetState createState() => _PythonArticalWidgetState();
+  State<PythonArticalWidget> createState() => _PythonArticalWidgetState();
 }
 
 class _PythonArticalWidgetState extends State<PythonArticalWidget> {
@@ -23,6 +23,8 @@ class _PythonArticalWidgetState extends State<PythonArticalWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => PythonArticalModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

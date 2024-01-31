@@ -11,7 +11,7 @@ class Python101p8Widget extends StatefulWidget {
   const Python101p8Widget({super.key});
 
   @override
-  _Python101p8WidgetState createState() => _Python101p8WidgetState();
+  State<Python101p8Widget> createState() => _Python101p8WidgetState();
 }
 
 class _Python101p8WidgetState extends State<Python101p8Widget> {
@@ -23,6 +23,8 @@ class _Python101p8WidgetState extends State<Python101p8Widget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => Python101p8Model());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override

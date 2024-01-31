@@ -15,7 +15,7 @@ class QuizzesPageWriteWidget extends StatefulWidget {
   const QuizzesPageWriteWidget({super.key});
 
   @override
-  _QuizzesPageWriteWidgetState createState() => _QuizzesPageWriteWidgetState();
+  State<QuizzesPageWriteWidget> createState() => _QuizzesPageWriteWidgetState();
 }
 
 class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
@@ -30,6 +30,8 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
 
     _model.inputAnswerController ??= TextEditingController();
     _model.inputAnswerFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -63,7 +65,7 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
           // Customize what your widget looks like when it's loading.
           if (!snapshot.hasData) {
             return Scaffold(
-              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               body: const Center(
                 child: SizedBox(
                   width: 50.0,
@@ -93,7 +95,7 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                 : FocusScope.of(context).unfocus(),
             child: Scaffold(
               key: scaffoldKey,
-              backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
+              backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
               appBar: AppBar(
                 backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
                 automaticallyImplyLeading: false,
@@ -127,6 +129,7 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                 top: true,
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     SizedBox(
                       width: 400.0,
@@ -139,8 +142,7 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                       ),
                     ),
                     Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
+                      padding: const EdgeInsets.all(30.0),
                       child: TextFormField(
                         controller: _model.inputAnswerController,
                         focusNode: _model.inputAnswerFocusNode,
@@ -178,6 +180,9 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                             ),
                             borderRadius: BorderRadius.circular(8.0),
                           ),
+                          filled: true,
+                          fillColor:
+                              FlutterFlowTheme.of(context).primaryBackground,
                         ),
                         style: FlutterFlowTheme.of(context).bodyMedium,
                         validator: _model.inputAnswerControllerValidator
@@ -186,7 +191,7 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 10.0, 0.0, 0.0),
+                          const EdgeInsetsDirectional.fromSTEB(40.0, 0.0, 40.0, 0.0),
                       child: FFButtonWidget(
                         onPressed: () async {
                           if (_model.inputAnswerController.text ==
@@ -209,20 +214,10 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                               FFAppState().scores = FFAppState().scores + 1;
                             });
                           } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'INCORRECT!',
-                                  style: TextStyle(
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                  ),
-                                ),
-                                duration: const Duration(milliseconds: 3000),
-                                backgroundColor:
-                                    FlutterFlowTheme.of(context).secondary,
-                              ),
-                            );
+                            setState(() {
+                              FFAppState().seenQuestions =
+                                  FFAppState().seenQuestions + 1;
+                            });
                           }
 
                           await currentUserReference!.update({
@@ -246,18 +241,19 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                             },
                           );
                         },
-                        text: 'SUBMIT',
+                        text: 'Continue',
                         options: FFButtonOptions(
-                          height: 40.0,
+                          width: double.infinity,
+                          height: 45.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               24.0, 0.0, 24.0, 0.0),
                           iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: const Color(0xFF1B175E),
+                          color: const Color(0xFF35215B),
                           textStyle:
                               FlutterFlowTheme.of(context).titleSmall.override(
                                     fontFamily: 'Readex Pro',
-                                    color: Colors.white,
+                                    color: FlutterFlowTheme.of(context).info,
                                   ),
                           elevation: 3.0,
                           borderSide: const BorderSide(
@@ -268,48 +264,52 @@ class _QuizzesPageWriteWidgetState extends State<QuizzesPageWriteWidget> {
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        FFButtonWidget(
-                          onPressed: () async {
-                            context.pushNamed(
-                              'SecondPageQuizJava',
-                              queryParameters: {
-                                'scoreAchieved': serializeParam(
-                                  0,
-                                  ParamType.int,
-                                ),
-                                'totalQuestions': serializeParam(
-                                  0,
-                                  ParamType.int,
-                                ),
-                              }.withoutNulls,
-                            );
-                          },
-                          text: 'Finish\n',
-                          options: FFButtonOptions(
-                            height: 40.0,
-                            padding: const EdgeInsetsDirectional.fromSTEB(
-                                24.0, 0.0, 24.0, 0.0),
-                            iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFFCED2F7),
-                            textStyle: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  fontFamily: 'Readex Pro',
-                                  color: Colors.white,
-                                ),
-                            elevation: 3.0,
-                            borderSide: const BorderSide(
-                              color: Colors.transparent,
-                              width: 1.0,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.fromSTEB(
+                          40.0, 50.0, 40.0, 30.0),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          context.pushNamed(
+                            'SecondPageQuizJava',
+                            queryParameters: {
+                              'scoreAchieved': serializeParam(
+                                0,
+                                ParamType.int,
+                              ),
+                              'totalQuestions': serializeParam(
+                                0,
+                                ParamType.int,
+                              ),
+                            }.withoutNulls,
+                          );
+                        },
+                        text: 'Exist',
+                        icon: Icon(
+                          Icons.exit_to_app_rounded,
+                          color: FlutterFlowTheme.of(context).secondaryText,
+                          size: 15.0,
                         ),
-                      ],
+                        options: FFButtonOptions(
+                          width: double.infinity,
+                          height: 45.0,
+                          padding: const EdgeInsetsDirectional.fromSTEB(
+                              24.0, 0.0, 24.0, 0.0),
+                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
+                              0.0, 0.0, 0.0, 0.0),
+                          color: const Color(0xFF140139),
+                          textStyle:
+                              FlutterFlowTheme.of(context).titleSmall.override(
+                                    fontFamily: 'Readex Pro',
+                                    color: FlutterFlowTheme.of(context).info,
+                                  ),
+                          elevation: 3.0,
+                          borderSide: const BorderSide(
+                            color: Colors.transparent,
+                            width: 1.0,
+                          ),
+                          borderRadius: BorderRadius.circular(8.0),
+                        ),
+                      ),
                     ),
                   ],
                 ),

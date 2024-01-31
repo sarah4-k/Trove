@@ -13,7 +13,7 @@ class ForgetPassWidget extends StatefulWidget {
   const ForgetPassWidget({super.key});
 
   @override
-  _ForgetPassWidgetState createState() => _ForgetPassWidgetState();
+  State<ForgetPassWidget> createState() => _ForgetPassWidgetState();
 }
 
 class _ForgetPassWidgetState extends State<ForgetPassWidget> {
@@ -28,6 +28,8 @@ class _ForgetPassWidgetState extends State<ForgetPassWidget> {
 
     _model.emailAddressRecoverController ??= TextEditingController();
     _model.emailAddressRecoverFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -83,67 +85,15 @@ class _ForgetPassWidgetState extends State<ForgetPassWidget> {
         centerTitle: true,
         elevation: 5.0,
       ),
-      body: Align(
-        alignment: const AlignmentDirectional(0.0, -1.0),
-        child: Container(
-          width: double.infinity,
-          constraints: const BoxConstraints(
-            maxWidth: 570.0,
-          ),
-          decoration: const BoxDecoration(),
-          child: Column(
+      body: Stack(
+        children: [
+          Column(
             mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // This row exists for when the "app bar" is hidden on desktop, having a way back for the user can work well.
-              if (responsiveVisibility(
-                context: context,
-                phone: false,
-                tablet: false,
-              ))
-                Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 8.0),
-                  child: InkWell(
-                    splashColor: Colors.transparent,
-                    focusColor: Colors.transparent,
-                    hoverColor: Colors.transparent,
-                    highlightColor: Colors.transparent,
-                    onTap: () async {
-                      context.safePop();
-                    },
-                    child: Row(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        const Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(
-                              0.0, 12.0, 0.0, 12.0),
-                          child: Icon(
-                            Icons.arrow_back_rounded,
-                            color: Color(0xFF15161E),
-                            size: 24.0,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              12.0, 0.0, 0.0, 0.0),
-                          child: Text(
-                            'Back',
-                            style: FlutterFlowTheme.of(context)
-                                .bodyMedium
-                                .override(
-                                  fontFamily: 'Plus Jakarta Sans',
-                                  color: const Color(0xFF15161E),
-                                  fontSize: 14.0,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 8.0, 16.0, 16.0),
+                padding: const EdgeInsets.all(10.0),
                 child: Text(
                   'We will send you an email with a link to reset your password, please enter the email associated with your account below.',
                   style: FlutterFlowTheme.of(context).labelMedium.override(
@@ -155,7 +105,7 @@ class _ForgetPassWidgetState extends State<ForgetPassWidget> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(16.0, 12.0, 16.0, 0.0),
+                padding: const EdgeInsets.all(16.0),
                 child: SizedBox(
                   width: double.infinity,
                   child: TextFormField(
@@ -209,7 +159,7 @@ class _ForgetPassWidgetState extends State<ForgetPassWidget> {
                         borderRadius: BorderRadius.circular(12.0),
                       ),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: FlutterFlowTheme.of(context).info,
                       contentPadding: const EdgeInsetsDirectional.fromSTEB(
                           24.0, 24.0, 20.0, 24.0),
                     ),
@@ -271,7 +221,7 @@ class _ForgetPassWidgetState extends State<ForgetPassWidget> {
               ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }

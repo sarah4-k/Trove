@@ -17,7 +17,7 @@ class EditprofileWidget extends StatefulWidget {
   const EditprofileWidget({super.key});
 
   @override
-  _EditprofileWidgetState createState() => _EditprofileWidgetState();
+  State<EditprofileWidget> createState() => _EditprofileWidgetState();
 }
 
 class _EditprofileWidgetState extends State<EditprofileWidget> {
@@ -32,6 +32,8 @@ class _EditprofileWidgetState extends State<EditprofileWidget> {
 
     _model.yourNameController ??= TextEditingController();
     _model.yourNameFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
@@ -206,7 +208,10 @@ class _EditprofileWidgetState extends State<EditprofileWidget> {
                                               const Duration(milliseconds: 500),
                                           fadeOutDuration:
                                               const Duration(milliseconds: 500),
-                                          imageUrl: currentUserPhoto,
+                                          imageUrl: valueOrDefault<String>(
+                                            currentUserPhoto,
+                                            'https://www.bing.com/images/search?view=detailV2&ccid=e1KNYwnu&id=6600772FF0AC16F5C2F24E5A6A268AE4738C99E1&thid=OIP.e1KNYwnuhNwNj7_-98yTRwHaF7&mediaurl=https%3a%2f%2ficon-library.com%2fimages%2fgeneric-user-icon%2fgeneric-user-icon-9.jpg&cdnurl=https%3a%2f%2fth.bing.com%2fth%2fid%2fR.7b528d6309ee84dc0d8fbffef7cc9347%3frik%3d4ZmMc%252bSKJmpaTg%26pid%3dImgRaw%26r%3d0&exph=1024&expw=1280&q=%d8%b5%d9%88%d8%b1%d9%87+%d9%85%d8%b3%d8%aa%d8%ae%d8%af%d9%85+&simid=608010229784734833&FORM=IRPRST&ck=576101A3BD4712D565E86CEACB4E4DA5&selectedIndex=0&itb=0',
+                                          ),
                                           fit: BoxFit.fitWidth,
                                         ),
                                       ),
@@ -233,10 +238,9 @@ class _EditprofileWidgetState extends State<EditprofileWidget> {
                                   size: 20.0,
                                 ),
                                 onPressed: () async {
-                                  final selectedMedia =
-                                      await selectMediaWithSourceBottomSheet(
-                                    context: context,
-                                    allowPhoto: true,
+                                  final selectedMedia = await selectMedia(
+                                    mediaSource: MediaSource.photoGallery,
+                                    multiImage: false,
                                   );
                                   if (selectedMedia != null &&
                                       selectedMedia.every((m) =>
@@ -359,7 +363,7 @@ class _EditprofileWidgetState extends State<EditprofileWidget> {
                   ),
                   style: FlutterFlowTheme.of(context).bodyMedium.override(
                         fontFamily: 'Plus Jakarta Sans',
-                        color: FlutterFlowTheme.of(context).primaryText,
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
                         fontSize: 14.0,
                         fontWeight: FontWeight.w500,
                       ),

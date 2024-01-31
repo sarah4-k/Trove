@@ -18,7 +18,7 @@ class QuizOptionWidget extends StatefulWidget {
   final bool? isTrue;
 
   @override
-  _QuizOptionWidgetState createState() => _QuizOptionWidgetState();
+  State<QuizOptionWidget> createState() => _QuizOptionWidgetState();
 }
 
 class _QuizOptionWidgetState extends State<QuizOptionWidget> {
@@ -34,6 +34,8 @@ class _QuizOptionWidgetState extends State<QuizOptionWidget> {
   void initState() {
     super.initState();
     _model = createModel(context, () => QuizOptionModel());
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => setState(() {}));
   }
 
   @override
